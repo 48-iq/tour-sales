@@ -4,7 +4,7 @@ import { reactive } from 'vue';
 import StandardInput from './StandardInput.vue';
 import StandardButton from './StandardButton.vue';
 
-  const loginFormData = reactive({
+  const registerFormData = reactive({
     username: '',
     password: ''
   })
@@ -12,21 +12,21 @@ import StandardButton from './StandardButton.vue';
 
 <template>
 
-  <form class="login-form">
+  <form class="register-form">
     <h1>Форма входа</h1>
     <label for="username">Логин</label>
-    <StandardInput v-model="loginFormData.username" id="username"/>
+    <StandardInput v-model="registerFormData.username" id="username"/>
 
     <label for="password">Пароль</label>
-    <StandardInput v-model="loginFormData.password" id="password" type="password"/>
+    <StandardInput v-model="registerFormData.password" id="password"  type="password"/>
 
-    <StandardButton>Войти</StandardButton>
-    <RouterLink to="/register">Зарегистрироваться</RouterLink>
+    <StandardButton>Зарегистрироваться</StandardButton>
+    <RouterLink to="/login">Войти</RouterLink>
   </form>
 </template>
 
 <style scoped>
-  .login-form {
+  .register-form {
     width: 400px;
     padding: 15px;
     display: flex;

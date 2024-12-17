@@ -1,4 +1,4 @@
-package dev.ivanov.tour_sales.dto;
+package dev.ivanov.tour_sales.dto.contract;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class AddCategoryDto {
-    private String title;
-    private String
+public class CreateContractDto {
+    private String tourId;
 }

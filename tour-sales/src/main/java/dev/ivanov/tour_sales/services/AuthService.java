@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -30,10 +31,10 @@ public class AuthService {
                 .username(registerDto.getUsername())
                 .password(registerDto.getPassword())
                 .build();
-        User savedUser = ;
+        User savedUser = userRepository.save(user);
 
         log.info("User {} registered", user.getUsername());
-        return jwtUtils.generate(savedUser);
+        return jwtUtils.generate(user, registerDto.getRoles());
     }
 
     @Transactional
@@ -44,6 +45,8 @@ public class AuthService {
                 loginDto.getPassword());
 
         authenticationManager.authenticate(upat);
+
+        User user = userRepository.
 
         User user = userRepository.
     }

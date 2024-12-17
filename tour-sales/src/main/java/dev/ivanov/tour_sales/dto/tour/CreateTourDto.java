@@ -1,4 +1,4 @@
-package dev.ivanov.tour_sales.dto;
+package dev.ivanov.tour_sales.dto.tour;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -13,6 +13,9 @@ create table roles(
     name text not null primary key
 );
 
+insert into roles(name)
+    values ('ROLE_USER'), ('ROLE_ADMIN')
+
 create table roles_users(
     role_name text not null references roles(name),
     user_id text not null references users(id),

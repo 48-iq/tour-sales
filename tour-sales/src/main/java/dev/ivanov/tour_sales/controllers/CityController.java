@@ -1,6 +1,6 @@
 package dev.ivanov.tour_sales.controllers;
 
-import dev.ivanov.tour_sales.dto.AddCityDto;
+import dev.ivanov.tour_sales.dto.city.AddCityDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

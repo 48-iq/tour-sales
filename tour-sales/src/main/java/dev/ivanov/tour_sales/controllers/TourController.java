@@ -1,7 +1,7 @@
 package dev.ivanov.tour_sales.controllers;
 
-import dev.ivanov.tour_sales.dto.CreateTourDto;
-import dev.ivanov.tour_sales.dto.UpdateTourDto;
+import dev.ivanov.tour_sales.dto.tour.CreateTourDto;
+import dev.ivanov.tour_sales.dto.tour.UpdateTourDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

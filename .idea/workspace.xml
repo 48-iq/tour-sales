@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="29307092-4533-49cf-bcef-22b92eb94446" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/tour-sales.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/script_4_countries_procedures.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/dto/country/CreateCountryDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/script_1_init.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/script_1_init.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales-front/src/components/LoginForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales-front/src/components/LoginForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales-front/src/components/StandardInput.vue" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales-front/src/components/StandardInput.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales-front/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales-front/src/router/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales-front/src/views/LoginPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales-front/src/views/LoginPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/controllers/CityController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/controllers/CityController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/controllers/ContractController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/controllers/ContractController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/controllers/TourController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/controllers/TourController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/controllers/UserCategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/controllers/UserCategoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/controllers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/dto/AddCategoryDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/dto/category/AddCategoryDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/dto/AddCityDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/dto/city/AddCityDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/dto/ChangePasswordDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/dto/CreateContractDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/dto/contract/CreateContractDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/dto/CreateTourDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/dto/tour/CreateTourDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/dto/UpdateTourDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/dto/tour/UpdateTourDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/repositories/DiscountRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/repositories/DiscountRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/services/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/services/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/services/JwtUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/services/JwtUtils.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;48-iq&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/48-iq/tour-sales.git&quot;,
+    &quot;accountId&quot;: &quot;6c7702d5-aae6-41c2-b39c-dc9b3dd10e5f&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2qM1AHNKITzslw3MRO0WRWMLl4I" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/projects/tour-sales/tour-sales/pom.xml&quot;
+  }
+}</component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="29307092-4533-49cf-bcef-22b92eb94446" name="Changes" comment="" />
+      <created>1734457485136</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1734457485136</updated>
+    </task>
+    <servers />
+  </component>
+</project>

@@ -1,6 +1,6 @@
 package dev.ivanov.tour_sales.controllers;
 
-import dev.ivanov.tour_sales.dto.CreateContractDto;
+import dev.ivanov.tour_sales.dto.contract.CreateContractDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

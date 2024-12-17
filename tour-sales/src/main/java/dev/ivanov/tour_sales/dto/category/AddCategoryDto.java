@@ -1,4 +1,4 @@
-package dev.ivanov.tour_sales.dto;
+package dev.ivanov.tour_sales.dto.category;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ChangePasswordDto {
-    private String password;
-    private String newPassword;
+public class AddCategoryDto {
+    private String title;
+    private String
 }
