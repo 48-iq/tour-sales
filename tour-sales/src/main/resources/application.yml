@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: tour-sales
+  datasource:
+    username: postgres
+    password: BestPassword
+    url: jdbc:postgresql://database:5432/tour_sales
+
+app:
+  jwt:
+    secret: BestPassword
+    expiration-seconds: 3600
+    subject: dev.ivanov.tour_sales
+    issuer: dev.ivanov.tour_sales
+
