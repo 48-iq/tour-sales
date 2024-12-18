@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import StandardButton from '@/components/StandardButton.vue';
 import StandardInput from '@/components/StandardInput.vue';
 
 </script>
@@ -6,11 +7,12 @@ import StandardInput from '@/components/StandardInput.vue';
   <div>
     <div class="view">
       <h1>Туры</h1>
-      <form>
-        <StandardInput placeholder="Название"/>
+      <form class="form">
+        <StandardInput placeholder="Название" class=" double precision"/>
         <select>
           <option>Все</option>
         </select>
+        <StandardButton class="find">Найти</StandardButton>
       </form>
     </div>
   </div>
@@ -22,5 +24,24 @@ import StandardInput from '@/components/StandardInput.vue';
     flex-direction: column;
     gap: 10px;
     align-items: center;
+  }
+  .form {
+    display: flex;
+    select {
+      margin-left: 10px;
+      border: 2px solid var(--color-light-green);
+      width: 100px;
+    }
+    select:focus {
+      border: 2px solid var(--color-light-green);
+    }
+  }
+  .find {
+    background-color: var(--color-white);
+    margin-left: 10px;
+    width: 200px;
+  }
+  .find-input {
+    width: 300px;
   }
 </style>

@@ -45,7 +45,7 @@ const router = createRouter({
       path: '/:catchAll(.*)',
       name: 'any',
       component: LoginPage
-    }
+    },
 
   ],
 })

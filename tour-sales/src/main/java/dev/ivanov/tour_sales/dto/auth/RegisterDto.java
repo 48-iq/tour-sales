@@ -14,6 +14,4 @@ import java.util.List;
 public class RegisterDto {
     private String username;
     private String password;
-    private List<String> roles;
-    private String adminPassword;
 }
