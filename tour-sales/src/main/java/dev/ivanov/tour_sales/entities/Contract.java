@@ -7,6 +7,8 @@ import lombok.*;
 
 @Entity
 @Table(name = "contracts")
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder

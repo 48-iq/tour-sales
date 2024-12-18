@@ -1,6 +1,6 @@
 package dev.ivanov.tour_sales.controllers;
 
-import dev.ivanov.tour_sales.dto.category.AddCategoryDto;
+import dev.ivanov.tour_sales.dto.category.UserCategoryCreateDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserCategoryController {
 
     @PostMapping("/add")
-    public ResponseEntity<?> addCategory(@RequestBody AddCategoryDto addCategoryDto) {
+    public ResponseEntity<?> addCategory(@RequestBody UserCategoryCreateDto userCategoryCreateDto) {
         return null;
     }
 

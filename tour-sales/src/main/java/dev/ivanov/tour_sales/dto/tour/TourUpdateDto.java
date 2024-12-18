@@ -9,12 +9,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CreateTourDto {
+public class TourUpdateDto {
     private String title;
     private String description;
     private String startAt;
     private String finishAt;
     private Double price;
     private Integer availableCount;
-    private String companyId;
 }

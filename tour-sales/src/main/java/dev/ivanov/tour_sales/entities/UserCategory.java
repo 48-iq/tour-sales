@@ -1,14 +1,17 @@
 package dev.ivanov.tour_sales.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import lombok.*;
 
-@Data
+@Entity
+@Table(name = "user_categories")
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class UserCategory {
-    private String name;
+    private String title;
+    private String description;
 }

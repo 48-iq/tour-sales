@@ -13,13 +13,13 @@ import java.util.Optional;
 public interface CompanyRepository extends JpaRepository<Company, String> {
 
     @Query(nativeQuery = true, value = "call create_company(:id, :name, :description, :createdAt, :email)")
-    void createCompany(String name, String description, LocalDateTime createdAt, String email);
+    void createCompany(String id, String name, String description, LocalDateTime createdAt, String email);
 
-    @Query(nativeQuery = true, value = "call delete_company(:id)")
-    void deleteCompany(String id);
+    @Query(nativeQuery = true, value = "call delete_company_by_id(:id)")
+    void deleteCompanyById(String id);
 
     @Query(nativeQuery = true, value = "call update_company_by_id(:id, :name, :description, :email)")
-    void updateCompany(String id, String name, String description, String email);
+    void updateCompanyById(String id, String name, String description, String email);
 
     @Query(nativeQuery = true, value = "select get_company_by_id(:id)")
     Optional<Company> getCompanyById(String id);

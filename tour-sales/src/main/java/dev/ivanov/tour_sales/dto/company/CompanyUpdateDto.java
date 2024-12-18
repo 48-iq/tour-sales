@@ -1,4 +1,4 @@
-package dev.ivanov.tour_sales.dto.category;
+package dev.ivanov.tour_sales.dto.company;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class AddCategoryDto {
-    private String title;
+public class CompanyUpdateDto {
+    private String name;
     private String description;
+    private String email;
 }

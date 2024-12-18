@@ -56,8 +56,9 @@ create table user_categories (
 );
 
 create table users_user_categories(
-    user_category_title text not null primary key references user_categories(title),
-    user_id text not null users(id)
+    user_category_title text not null references user_categories(title),
+    user_id text not null references users(id)
+    primary key (user_category_title, user_id)
 );
 
 create table discounts (

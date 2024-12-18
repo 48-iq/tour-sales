@@ -32,7 +32,7 @@ END;
 $$ LANGUAGE plpgsql;
 
 
-CREATE OR REPLACE FUNCTION delete_company(p_id text)
+CREATE OR REPLACE FUNCTION delete_company_by_id(p_id text)
 RETURNS void AS
 $$
 BEGIN

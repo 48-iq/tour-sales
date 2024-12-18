@@ -18,4 +18,14 @@ public interface UserCategoryRepository extends JpaRepository<UserCategory, Stri
 
     @Query(nativeQuery = true, value = "select get_all_user_categories()")
     List<UserCategory> getAllUserCategories();
+
+    @Query(nativeQuery = true, value = "select get_categories_by_user_id(:userId)")
+    List<UserCategory> getCategoriesByUserId(String userId);
+
+    @Query(nativeQuery = true, value = "call add_user_to_category(:userId, :userCategoryName)")
+    void addUserToCategory(String userId, String userCategoryName);
+
+    @Query(nativeQuery = true, value = "call remove_user_from_category(:userId, :userCategoryName)")
+    void removeUserFromCategory(String userId, String userCategoryName);
 }
+

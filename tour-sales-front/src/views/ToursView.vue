@@ -1,6 +1,19 @@
 <script setup lang="ts">
 import StandardButton from '@/components/StandardButton.vue';
 import StandardInput from '@/components/StandardInput.vue';
+import TourCard from '@/components/TourCard.vue';
+
+const tour = {
+  id: '111111-1111111-1111111',
+  title: 'Тур в Москву',
+  description: 'Описание тура',
+  startAt: '2023-01-01',
+  finishAt: '2023-01-01',
+  availableCount: 10,
+  createdAt: '2023-01-01 00:00:00',
+  price: 1000,
+  companyId: '111111-1111111-1111111',
+}
 
 </script>
 <template>
@@ -14,6 +27,9 @@ import StandardInput from '@/components/StandardInput.vue';
         </select>
         <StandardButton class="find">Найти</StandardButton>
       </form>
+      <div>
+        <TourCard :tour="tour"/>
+      </div>
     </div>
   </div>
 </template>

@@ -71,7 +71,7 @@ $$ LANGUAGE plpgsql;
 
 
 
-CREATE OR REPLACE FUNCTION delete_tour(p_id text)
+CREATE OR REPLACE FUNCTION delete_tour_by_id(p_id text)
 RETURNS void AS
 $$
 BEGIN

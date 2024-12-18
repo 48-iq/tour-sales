@@ -1,7 +1,7 @@
 package dev.ivanov.tour_sales.controllers;
 
-import dev.ivanov.tour_sales.dto.tour.CreateTourDto;
-import dev.ivanov.tour_sales.dto.tour.UpdateTourDto;
+import dev.ivanov.tour_sales.dto.tour.TourCreateDto;
+import dev.ivanov.tour_sales.dto.tour.TourUpdateDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,13 +20,13 @@ public class TourController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<?> createTour(@RequestBody CreateTourDto createTourDto) {
+    public ResponseEntity<?> createTour(@RequestBody TourCreateDto tourCreateDto) {
         return null;
     }
 
     @PutMapping("/update/{tourId}")
     public ResponseEntity<?> updateTour(@PathVariable String tourId,
-                                        @RequestBody UpdateTourDto updateTourDto) {
+                                        @RequestBody TourUpdateDto tourUpdateDto) {
         return null;
     }
 

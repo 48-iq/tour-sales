@@ -12,11 +12,11 @@ import java.util.Optional;
 @Repository
 public interface TourRepository extends JpaRepository<Tour, String> {
 
-    @Query(nativeQuery = true, value = "call create_tour(:id, :title, :description, :createdAt, :price, :finishedAt, :availableCount, :companyId)")
-    void createTour(String id, String name, String description, LocalDateTime createdAt, Double price, LocalDateTime finishedAt, int availableCount, String companyId);
+    @Query(nativeQuery = true, value = "call create_tour(:id, :title, :description, :createdAt, :price, :startAt, :finishedAt, :availableCount, :companyId)")
+    void createTour(String id, String name, String description, LocalDateTime createdAt, Double price,LocalDateTime startAt, LocalDateTime finishedAt, int availableCount, String companyId);
 
-    @Query(nativeQuery = true, value = "call delete_tour(:id)")
-    void deleteTour(String name);
+    @Query(nativeQuery = true, value = "call delete_tour_by_id(:id)")
+    void deleteTourById(String id);
 
     @Query(nativeQuery = true, value = "call update_tour_by_id(:id, :title, :description, :price, :finishedAt, :availableCount)")
     void updateTour(String id, String name, String description, Double price, LocalDateTime finishedAt, int availableCount);

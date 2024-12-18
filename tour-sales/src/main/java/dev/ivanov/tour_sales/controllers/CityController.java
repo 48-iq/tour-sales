@@ -1,6 +1,6 @@
 package dev.ivanov.tour_sales.controllers;
 
-import dev.ivanov.tour_sales.dto.city.AddCityDto;
+import dev.ivanov.tour_sales.dto.city.CityCreateDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +14,7 @@ public class CityController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<?> add(AddCityDto addCityDto) {
+    public ResponseEntity<?> add(CityCreateDto cityCreateDto) {
         return null;
     }
 

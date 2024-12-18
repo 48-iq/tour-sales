@@ -2,7 +2,10 @@ package dev.ivanov.tour_sales.services;
 
 import dev.ivanov.tour_sales.dto.auth.LoginDto;
 import dev.ivanov.tour_sales.dto.auth.RegisterDto;
+import dev.ivanov.tour_sales.entities.Role;
 import dev.ivanov.tour_sales.entities.User;
+import dev.ivanov.tour_sales.exceptions.EntityNotFoundException;
+import dev.ivanov.tour_sales.repositories.RoleRepository;
 import dev.ivanov.tour_sales.repositories.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +17,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -34,16 +39,27 @@ public class AuthService {
     @Autowired
     private IdService idService;
 
+    @Autowired
+    private RoleRepository roleRepository;
+
     @Transactional
     public String register(RegisterDto registerDto) {
-        User user = User.builder()
-                .username(registerDto.getUsername())
-                .password(registerDto.getPassword())
-                .build();
-        User savedUser = userRepository.save(user);
 
+        String id = idService.generate();
+
+        userRepository.createUser(id,
+                registerDto.getUsername(),
+                passwordEncoder.encode(registerDto.getPassword()),
+                null,
+                null,
+                null,
+                null,
+                null);
+
+        User user = userRepository.getUserById(id).get();
+        List<Role> roles = roleRepository.getRolesByUserId(id);
         log.info("User {} registered", user.getUsername());
-        return jwtUtils.generate(user, registerDto.getRoles());
+        return jwtUtils.generate(user, roles.stream().map(Role::getName).toList());
     }
 
     @Transactional
@@ -55,19 +71,11 @@ public class AuthService {
 
         authenticationManager.authenticate(upat);
 
-        String id = idService.generate();
+        User user = userRepository.getUserByUsername(loginDto.getUsername())
+                .orElseThrow(() -> new EntityNotFoundException("User with username " + loginDto.getUsername() + " not found"));
+        List<Role> roles = roleRepository.getRolesByUserId(user.getId());
 
-        userRepository.createUser(id,
-                loginDto.getUsername(),
-                passwordEncoder.encode(loginDto.getPassword()),
-                null,
-                null,
-                null,
-                null,
-                null);
-
-        User user = userRepository.getUserById(id);
-        return jwtUtils.generate(user, loginDto.getRoles());
+        return jwtUtils.generate(user, roles.stream().map(Role::getName).toList());
 
 
     }
