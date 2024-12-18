@@ -6,6 +6,7 @@ import jakarta.persistence.Table;
 import lombok.*;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "tours")
@@ -19,10 +20,10 @@ public class Tour {
     private String id;
     private String title;
     private String description;
-    private Instant createdAt;
+    private LocalDateTime createdAt;
     private Double price;
-    private Instant startAt;
-    private Instant finishAt;
+    private LocalDateTime startAt;
+    private LocalDateTime finishAt;
     private Integer availableCount;
     private String companyId;
 }

@@ -35,4 +35,22 @@ public class UserCategoryService {
                         .build())
                 .toList();
     }
+
+    public void addUserToCategory(String userId, String userCategoryName) {
+        userCategoryRepository.addUserToCategory(userId, userCategoryName);
+    }
+
+    public void removeUserFromCategory(String userId, String userCategoryName) {
+        userCategoryRepository.removeUserFromCategory(userId, userCategoryName);
+    }
+
+    public List<UserCategoryDto> getCategoriesByUserId(String userId) {
+        return userCategoryRepository.getCategoriesByUserId(userId)
+                .stream()
+                .map(userCategory -> UserCategoryDto.builder()
+                        .title(userCategory.getTitle())
+                        .description(userCategory.getDescription())
+                        .build())
+                .toList();
+    }
 }
