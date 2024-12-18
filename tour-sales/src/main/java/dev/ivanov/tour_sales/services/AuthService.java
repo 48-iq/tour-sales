@@ -10,7 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
 
 @Service
 @Slf4j
@@ -24,6 +27,12 @@ public class AuthService {
 
     @Autowired
     private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private IdService idService;
 
     @Transactional
     public String register(RegisterDto registerDto) {
@@ -46,9 +55,21 @@ public class AuthService {
 
         authenticationManager.authenticate(upat);
 
-        User user = userRepository.
+        String id = idService.generate();
 
-        User user = userRepository.
+        userRepository.createUser(id,
+                loginDto.getUsername(),
+                passwordEncoder.encode(loginDto.getPassword()),
+                null,
+                null,
+                null,
+                null,
+                null);
+
+        User user = userRepository.getUserById(id);
+        return jwtUtils.generate(user, loginDto.getRoles());
+
+
     }
 
 
