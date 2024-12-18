@@ -3,31 +3,26 @@ package dev.ivanov.tour_sales.repositories;
 import dev.ivanov.tour_sales.entities.Discount;
 import dev.ivanov.tour_sales.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
 public interface DiscountRepository extends JpaRepository<Discount, String> {
+    @Query(nativeQuery = true, value = "call create_discount(:categoryName, :tourId, :discount)")
+    void createDiscount(String categoryName, String tourId, double discount);
 
-    @Procedure(name = "find_user_by_id")
-    Optional<User> findUserById(@Param("id") String id);
+    @Query(nativeQuery = true, value = "call delete_discount(:categoryName, :tourId)")
+    void deleteDiscount(String categoryName, String tourId);
 
-    @Procedure(name = "register_user")
-    User registerUser(@Param("id") String id,
-                      @Param("username") String username,
-                      @Param("password") String password);
+    @Query(nativeQuery = true, value = "select get_discounts_by_category(:categoryName)")
+    List<Discount> getDiscountsByCategory(String categoryName);
 
-    @Procedure(name = "delete_user_by_id")
-    void deleteUserById(@Param("id") String id);
-
-    @Procedure(name = "update_user")
-    User updateUser(@Param("id") String id,
-                    @Param("name") String name,
-                    @Param("surname") String surname,
-                    @Param("phone") String phone);
-
+    @Query(nativeQuery = true, value = "select get_discounts_by_tour(:tourId)")
+    List<Discount> getDiscountsByTour(String tourId);
 
 }
