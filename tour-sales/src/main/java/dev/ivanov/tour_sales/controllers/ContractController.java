@@ -1,6 +1,6 @@
 package dev.ivanov.tour_sales.controllers;
 
-import dev.ivanov.tour_sales.dto.contract.CreateContractDto;
+import dev.ivanov.tour_sales.dto.contract.ContractCreateDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 public class ContractController {
 
     @PostMapping("/create")
-    public ResponseEntity<?> createContract(@RequestBody CreateContractDto createContractDto) {
+    public ResponseEntity<?> createContract(@RequestBody ContractCreateDto contractCreateDto) {
         return null;
     }
 

@@ -43,23 +43,23 @@ $$ LANGUAGE plpgsql;
 
 
 
-CREATE OR REPLACE FUNCTION add_user_to_category(p_user_id text, p_user_category_name)
+CREATE OR REPLACE FUNCTION add_user_to_category(p_user_id text, p_user_category_name text)
 RETURNS void AS
 $$
 BEGIN
     insert into user_user_categories(user_id, user_category_name)
-        values (p_user_id, p_user_category_name)
+        values (p_user_id, p_user_category_name);
 END;
 $$ LANGUAGE plpgsql;
 
 
 
-CREATE OR REPLACE FUNCTION remove_user_from_category(p_user_id text, p_user_category_name)
+CREATE OR REPLACE FUNCTION remove_user_from_category(p_user_id text, p_user_category_name text)
 RETURNS void AS
 $$
 BEGIN
     delete from user_user_categories as uuc
         where uuc.user_id = p_user_id and
-            uuc.user_category_name = p_user_category_name
+            uuc.user_category_name = p_user_category_name;
 END;
 $$ LANGUAGE plpgsql;

@@ -33,6 +33,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+
 CREATE OR REPLACE FUNCTION get_tour_by_id(p_id text)
 RETURNS TABLE(id text, title text, description text, created_at timestamp, price double precision, start_at timestamp, finish_at timestamp, available_count integer, company_id text) AS
 $$
@@ -45,12 +46,12 @@ END;
 $$ LANGUAGE plpgsql;
 
 
-CREATE OR REPLACE FUNCTION update_tour_by_id(p_id text, p_title text, p_description text, p_created_at timestamp, p_price double precision, p_start_at timestamp, p_finish_at timestamp, p_available_count integer)
+CREATE OR REPLACE FUNCTION update_tour_by_id(p_id text, p_title text, p_description text, p_price double precision, p_start_at timestamp, p_finish_at timestamp, p_available_count integer)
 RETURNS void AS
 $$
 BEGIN
     UPDATE tours
-    SET title = p_title, description = p_description, created_at = p_created_at, price = p_price, start_at = p_start_at, finish_at = p_finish_at, available_count = p_available_count
+    SET title = p_title, description = p_description, price = p_price, start_at = p_start_at, finish_at = p_finish_at, available_count = p_available_count
     WHERE id = p_id;
 END;
 $$ LANGUAGE plpgsql;

@@ -5,6 +5,6 @@ BEGIN
     RETURN QUERY
     SELECT role_name AS name FROM
     users_roles
-        where user_id = p_id
+        where user_id = p_id;
 END;
 $$ LANGUAGE plpgsql;

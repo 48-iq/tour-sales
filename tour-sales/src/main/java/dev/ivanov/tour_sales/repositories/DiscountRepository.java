@@ -19,8 +19,8 @@ public interface DiscountRepository extends JpaRepository<Discount, String> {
     @Query(nativeQuery = true, value = "call delete_discount(:categoryName, :tourId)")
     void deleteDiscount(String categoryName, String tourId);
 
-    @Query(nativeQuery = true, value = "select get_discounts_by_category(:categoryName)")
-    List<Discount> getDiscountsByCategory(String categoryName);
+    @Query(nativeQuery = true, value = "select get_price_with_discount(:tourId, :userId)")
+    double getPriceWithDiscount(String tourId, String userId);
 
     @Query(nativeQuery = true, value = "select get_discounts_by_tour(:tourId)")
     List<Discount> getDiscountsByTour(String tourId);

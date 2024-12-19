@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CreateContractDto {
+public class ContractCreateDto {
     private String tourId;
+    private String userId;
 }
