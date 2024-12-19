@@ -18,8 +18,8 @@ public interface TourRepository extends JpaRepository<Tour, String> {
     @Query(nativeQuery = true, value = "call delete_tour_by_id(:id)")
     void deleteTourById(String id);
 
-    @Query(nativeQuery = true, value = "call update_tour_by_id(:id, :title, :description, :price, :finishedAt, :availableCount)")
-    void updateTour(String id, String name, String description, Double price, LocalDateTime finishedAt, int availableCount);
+    @Query(nativeQuery = true, value = "call update_tour_by_id(:id, :title, :description, :price, :startAt :finishedAt, :availableCount)")
+    void updateTour(String id, String name, String description, Double price, LocalDateTime startAt, LocalDateTime finishedAt, int availableCount);
 
     @Query(nativeQuery = true, value = "select get_tour_by_id(:id)")
     Optional<Tour> getTourById(String id);
@@ -27,8 +27,11 @@ public interface TourRepository extends JpaRepository<Tour, String> {
     @Query(nativeQuery = true, value = "select get_tours_by_title(:title)")
     List<Tour> getToursByTitle(String title);
 
-    @Query(nativeQuery = true, value = "select get_tours_by_title_or_description(:query)")
-    List<Tour> getToursByTitleOrDescription(String query);
+    @Query(nativeQuery = true, value = "select get_tours_by_title_and_city(:query, :city)")
+    List<Tour> getToursByTitleAndCity(String query, String city);
+
+    @Query(nativeQuery = true, value = "select get_tours_by_city(:city)")
+    List<Tour> getToursByCity(String city);
 
     @Query(nativeQuery = true, value = "select get_tours_by_company(:companyId)")
     List<Tour> getToursByCompanyId(String companyId);

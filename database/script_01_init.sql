@@ -14,9 +14,9 @@ create table roles(
 );
 
 insert into roles(name)
-    values ('ROLE_USER'), ('ROLE_ADMIN')
+    values ('ROLE_USER'), ('ROLE_ADMIN');
 
-create table roles_users(
+create table users_roles(
     role_name text not null references roles(name),
     user_id text not null references users(id),
     primary key (role_name, user_id)
@@ -46,18 +46,19 @@ create table contracts(
     id text not null primary key,
     tour_id text not null references tours(id),
     user_id text not null references users(id),
+    price double precision not null,
     was_paid boolean not null
 );
 
 
 create table user_categories (
     title text not null primary key,
-    description text not null primary key
+    description text not null
 );
 
 create table users_user_categories(
     user_category_title text not null references user_categories(title),
-    user_id text not null references users(id)
+    user_id text not null references users(id),
     primary key (user_category_title, user_id)
 );
 
@@ -77,10 +78,11 @@ create table cities (
 );
 
 create table tours_cities(
-    tour_id not null references tours(id),
-    city_name not null references cities(name),
-    arrive_at not null timestamp,
-    depart_at not null timestamp
+    tour_id text not null references tours(id),
+    city_name text not null references cities(name),
+    arrive_at timestamp not null,
+    depart_at timestamp not null,
+    primary key (tour_id, city_name)
 );
 
 

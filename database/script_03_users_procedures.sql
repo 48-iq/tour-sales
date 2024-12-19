@@ -63,6 +63,6 @@ BEGIN
     RETURN QUERY
     SELECT u.id, u.username, password text, u.name, u.surname, u.email, u.birth_date, u.phone
     FROM users u
-    WHERE u.username = p_username
+    WHERE u.username = p_username;
 END;
 $$ LANGUAGE plpgsql;

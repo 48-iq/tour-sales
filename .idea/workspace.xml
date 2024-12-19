@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d0f74cf7-3114-4a86-9e2b-332712ae5e86" name="Changes" comment="a">
+      <change afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/dto/contract/ContractDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/dto/discount/DiscountCreateDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/services/ContractService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/services/DiscountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/script_10_roles_procedures.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/script_10_roles_procedures.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/script_1_init.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/script_01_init.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/script_2_cities_procedures.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/script_02_cities_procedures.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/script_3_users_procedures.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/script_03_users_procedures.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/script_4_countries_procedures.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/script_04_countries_procedures.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/script_5_user_categories_procedures.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/script_05_user_categories_procedures.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/script_6_discounts_procedures.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/script_06_discounts_procedures.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/script_7_companies_procedures.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/script_07_companies_procedures.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/script_8_tours_procedures.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/script_08_tours_procedures.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/script_9_contracts_procedures.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/script_09_contracts_procedures.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/controllers/ContractController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/controllers/ContractController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/controllers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/dto/contract/CreateContractDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/dto/contract/ContractCreateDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/entities/Contract.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/entities/Contract.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/repositories/DiscountRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/repositories/DiscountRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/repositories/TourRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/repositories/TourRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/services/TourService.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/services/TourService.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;48-iq&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/48-iq/tour-sales&quot;,
+    &quot;accountId&quot;: &quot;6c7702d5-aae6-41c2-b39c-dc9b3dd10e5f&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2qMTchLSdL9pYIlM6EZtwXG3JId" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="sortByType" value="true" />
+    <option name="sortKey" value="BY_TYPE" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/projects/tour-sales/tour-sales/pom.xml&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+  }
+}</component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d0f74cf7-3114-4a86-9e2b-332712ae5e86" name="Changes" comment="" />
+      <created>1734471526808</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1734471526808</updated>
+    </task>
+    <task id="LOCAL-00001" summary="a">
+      <option name="closed" value="true" />
+      <created>1734534053650</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1734534053650</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="a" />
+    <option name="LAST_COMMIT_MESSAGE" value="a" />
+  </component>
+</project>
