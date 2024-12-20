@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface RoleRepository extends JpaRepository<Role, String> {
-    @Query(nativeQuery = true, value = "select get_roles_by_user_id(:userId)")
+    @Query(nativeQuery = true, value = "select * from get_roles_by_user_id(:userId)")
     List<Role> getRolesByUserId(String userId);
 }

@@ -1,3 +1,4 @@
+import ContractsView from '@/views/ContractsView.vue'
 import HomePage from '@/views/HomePage.vue'
 import LoginPage from '@/views/LoginPage.vue'
 import ProfileEditView from '@/views/ProfileEditView.vue'
@@ -38,6 +39,11 @@ const router = createRouter({
           path: 'tours',
           name: 'tours',
           component: ToursView
+        },
+        {
+          path: 'contracts',
+          name: 'contracts',
+          component: ContractsView
         }
       ]
     },

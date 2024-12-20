@@ -5,27 +5,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d0f74cf7-3114-4a86-9e2b-332712ae5e86" name="Changes" comment="a">
-      <change afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/dto/contract/ContractDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/dto/discount/DiscountCreateDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/services/ContractService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/services/DiscountService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/controllers/CompanyController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/controllers/DiscountController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/security/JwtFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/security/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/security/UserDetailsImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/security/UserDetailsServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/script_10_roles_procedures.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/script_10_roles_procedures.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/script_1_init.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/script_01_init.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/script_2_cities_procedures.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/script_02_cities_procedures.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/script_3_users_procedures.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/script_03_users_procedures.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/script_4_countries_procedures.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/script_04_countries_procedures.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/script_5_user_categories_procedures.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/script_05_user_categories_procedures.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/script_6_discounts_procedures.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/script_06_discounts_procedures.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/script_7_companies_procedures.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/script_07_companies_procedures.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/script_8_tours_procedures.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/script_08_tours_procedures.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/script_9_contracts_procedures.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/script_09_contracts_procedures.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/script_03_users_procedures.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/script_03_users_procedures.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/script_06_discounts_procedures.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/script_06_discounts_procedures.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/script_09_contracts_procedures.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/script_09_contracts_procedures.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales-front/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales-front/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales-front/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales-front/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales-front/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales-front/src/router/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales-front/src/views/ContsractView.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/controllers/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/controllers/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/controllers/CityController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/controllers/CityController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/controllers/ContractController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/controllers/ContractController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/controllers/CountryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/controllers/CountryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/controllers/TourController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/controllers/TourController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/controllers/UserCategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/controllers/UserCategoryController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/dto/contract/CreateContractDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/dto/contract/ContractCreateDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/entities/Contract.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/entities/Contract.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/entities/UserCategory.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/entities/UserCategory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/repositories/CityRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/repositories/CityRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/repositories/CompanyRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/repositories/CompanyRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/repositories/ContractRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/repositories/ContractRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/repositories/CountryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/repositories/CountryRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/repositories/DiscountRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/repositories/DiscountRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/repositories/RoleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/repositories/RoleRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/repositories/TourRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/repositories/TourRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/repositories/UserCategoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/repositories/UserCategoryRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/repositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/repositories/UserRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/services/TourService.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/services/TourService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -66,17 +77,18 @@
     <option name="sortByType" value="true" />
     <option name="sortKey" value="BY_TYPE" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/projects/tour-sales/tour-sales/pom.xml&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/projects/tour-sales/tour-sales/pom.xml",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -94,7 +106,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734534053650</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="a">
+      <option name="closed" value="true" />
+      <created>1734616317466</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1734616317466</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

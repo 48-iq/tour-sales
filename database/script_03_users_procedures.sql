@@ -3,7 +3,7 @@ RETURNS TABLE(id text, username text, password text, name text, surname text, em
 $$
 BEGIN
     RETURN QUERY
-    SELECT u.id, u.username, password text, u.name, u.surname, u.email, u.birth_date, u.phone
+    SELECT u.id, u.username, u.password text, u.name, u.surname, u.email, u.birth_date, u.phone
     FROM users u
     WHERE u.id = user_id;
 END;
@@ -49,7 +49,7 @@ RETURNS TABLE(id text, username text, password text, name text, surname text, em
 $$
 BEGIN
     RETURN QUERY
-    SELECT u.id, u.username, password text, u.name, u.surname, u.email, u.birth_date, u.phone
+    SELECT u.id, u.username, u.password text, u.name, u.surname, u.email, u.birth_date, u.phone
     FROM users u
     JOIN contracts c ON c.user_id = u.id
     WHERE c.tour_id = tour_id;
@@ -61,7 +61,7 @@ RETURNS TABLE(id text, username text, password text, name text, surname text, em
 $$
 BEGIN
     RETURN QUERY
-    SELECT u.id, u.username, password text, u.name, u.surname, u.email, u.birth_date, u.phone
+    SELECT u.id, u.username, u.password text, u.name, u.surname, u.email, u.birth_date, u.phone
     FROM users u
     WHERE u.username = p_username;
 END;

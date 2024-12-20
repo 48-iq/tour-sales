@@ -13,16 +13,16 @@ import java.util.Optional;
 
 @Repository
 public interface DiscountRepository extends JpaRepository<Discount, String> {
-    @Query(nativeQuery = true, value = "call create_discount(:categoryName, :tourId, :discount)")
+    @Query(nativeQuery = true, value = "select * from create_discount(:categoryName, :tourId, :discount)")
     void createDiscount(String categoryName, String tourId, double discount);
 
-    @Query(nativeQuery = true, value = "call delete_discount(:categoryName, :tourId)")
+    @Query(nativeQuery = true, value = "select * from delete_discount(:categoryName, :tourId)")
     void deleteDiscount(String categoryName, String tourId);
 
-    @Query(nativeQuery = true, value = "select get_price_with_discount(:tourId, :userId)")
+    @Query(nativeQuery = true, value = "select * from get_price_with_discount(:tourId, :userId)")
     double getPriceWithDiscount(String tourId, String userId);
 
-    @Query(nativeQuery = true, value = "select get_discounts_by_tour(:tourId)")
+    @Query(nativeQuery = true, value = "select * from get_discounts_by_tour(:tourId)")
     List<Discount> getDiscountsByTour(String tourId);
 
 }

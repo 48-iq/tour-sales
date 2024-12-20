@@ -1,6 +1,7 @@
 package dev.ivanov.tour_sales.entities;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.*;
 
@@ -12,6 +13,7 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class UserCategory {
+    @Id
     private String title;
     private String description;
 }

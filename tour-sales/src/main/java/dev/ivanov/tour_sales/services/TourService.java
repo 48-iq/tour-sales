@@ -53,7 +53,7 @@ public class TourService {
                 tourCreateDto.getCompanyId());
     }
 
-    public void updateTour(String id, TourUpdateDto tourUpdateDto) {
+    public void updateTourById(String id, TourUpdateDto tourUpdateDto) {
         tourRepository.updateTour(id,
                 tourUpdateDto.getTitle(),
                 tourUpdateDto.getDescription(),

@@ -10,22 +10,22 @@ import java.util.List;
 
 @Repository
 public interface UserCategoryRepository extends JpaRepository<UserCategory, String> {
-    @Query(nativeQuery = true, value = "call create_user_category(:title, :description)")
+    @Query(nativeQuery = true, value = "select * from create_user_category(:title, :description)")
     void createUserCategory(String title, String description);
 
-    @Query(nativeQuery = true, value = "call delete_user_category(:title)")
+    @Query(nativeQuery = true, value = "select * from delete_user_category(:title)")
     void deleteUserCategory(String title);
 
-    @Query(nativeQuery = true, value = "select get_all_user_categories()")
+    @Query(nativeQuery = true, value = "select * from get_all_user_categories()")
     List<UserCategory> getAllUserCategories();
 
-    @Query(nativeQuery = true, value = "select get_categories_by_user_id(:userId)")
+    @Query(nativeQuery = true, value = "select * from get_categories_by_user_id(:userId)")
     List<UserCategory> getCategoriesByUserId(String userId);
 
-    @Query(nativeQuery = true, value = "call add_user_to_category(:userId, :userCategoryName)")
+    @Query(nativeQuery = true, value = "select * from add_user_to_category(:userId, :userCategoryName)")
     void addUserToCategory(String userId, String userCategoryName);
 
-    @Query(nativeQuery = true, value = "call remove_user_from_category(:userId, :userCategoryName)")
+    @Query(nativeQuery = true, value = "select * from remove_user_from_category(:userId, :userCategoryName)")
     void removeUserFromCategory(String userId, String userCategoryName);
 }
 

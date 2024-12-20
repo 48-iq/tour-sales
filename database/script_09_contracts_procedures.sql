@@ -29,13 +29,13 @@ $$ LANGUAGE plpgsql;
 
 
 CREATE OR REPLACE FUNCTION get_contract_by_id(p_id text)
-RETURNS TABLE(id text, tour_id text, user_id text, price double precision pre was_paid boolean) AS
+RETURNS TABLE(id text, tour_id text, user_id text, price double precision, was_paid boolean) AS
 $$
 BEGIN
     RETURN QUERY
     SELECT id, tour_id, user_id, price, was_paid
     FROM contracts
-    WHERE id = p_id
+    WHERE id = p_id;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -48,7 +48,7 @@ BEGIN
     RETURN QUERY
     SELECT id, tour_id, user_id, price, was_paid
     FROM contracts
-    WHERE user_id = p_user_id
+    WHERE user_id = p_user_id;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -60,7 +60,7 @@ BEGIN
     RETURN QUERY
     SELECT id, tour_id, user_id, price, was_paid
     FROM contracts
-    WHERE tour_id = p_tour_id
+    WHERE tour_id = p_tour_id;
 END;
 $$ LANGUAGE plpgsql;
 

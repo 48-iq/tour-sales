@@ -9,12 +9,12 @@ import java.util.List;
 
 @Repository
 public interface CityRepository extends JpaRepository<City, String> {
-    @Query(nativeQuery = true, value = "call create_city(:name, :countryName)")
+    @Query(nativeQuery = true, value = "select * from create_city(:name, :countryName)")
     void createCity(String name, String countryName);
 
-    @Query(nativeQuery = true, value = "select get_all_cities()")
+    @Query(nativeQuery = true, value = "select * from get_all_cities()")
     List<City> getAllCities();
 
-    @Query(nativeQuery = true, value = "call delete_city(:name)")
+    @Query(nativeQuery = true, value = "select * from delete_city(:name)")
     void deleteCity(String name);
 }
