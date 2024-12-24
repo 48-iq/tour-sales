@@ -34,8 +34,10 @@ export type registerData = {
 export const useAuthStore = defineStore('auth', () => {
   const authData = ref<authData | null>(null)
   const isAuth = ref<boolean>(false)
-  const isLoading = ref<boolean>(false)
-  const isError = ref<boolean>(false)
+  const isLoginLoading = ref<boolean>(false)
+  const isLoginError = ref<boolean>(false)
+  const isRegisterLoading = ref<boolean>(false)
+  const isRegisterError = ref<boolean>(false)
 
   const loadCookies = () => {
     const jwt = cookies.get('jwt')
@@ -55,33 +57,45 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   const login = async (data: loginData) => {
-    isLoading.value = true
-    isError.value = false
-    const response = await axios.post<string>(`${host}/api/auth/login`, data)
-    if (response.status === 200) {
-      const jwt = response.data
-      authData.value = parseJwt(jwt)
-      saveCookies()
-      isAuth.value = true
-    } else {
-      isError.value = true
+    try {
+      isLoginLoading.value = true
+      isLoginError.value = false
+      const response = await axios.post<string>(`${host}/api/auth/login`, data)
+      if (response.status === 200) {
+        const jwt = response.data
+        authData.value = parseJwt(jwt)
+        saveCookies()
+        isAuth.value = true
+      } else {
+        isLoginError.value = true
+      }
+    } catch (error) {
+      if (error instanceof Error) 
+        isLoginError.value = true
     }
-    isLoading.value = false
+    isLoginLoading.value = false
   }
 
   const register = async (data: registerData) => {
-    isLoading.value = true
-    isError.value = false
-    const response = await axios.post<string>(`${host}/api/auth/register`, data)
-    if (response.status === 200) {
-      const jwt = response.data
-      authData.value = parseJwt(jwt)
-      saveCookies()
-      isAuth.value = true
-    } else {
-      isError.value = true
+    try {
+      isRegisterLoading.value = true
+      isRegisterError.value = false
+      const response = await axios.post<string>(`${host}/api/auth/register`, data)
+      if (response.status === 200) {
+        const jwt = response.data
+        authData.value = parseJwt(jwt)
+        saveCookies()
+        isAuth.value = true
+      } else {
+        isRegisterError.value = true
+      } 
+    } catch (error) {
+      if (error instanceof Error) 
+        isRegisterError.value = true
     }
-    isLoading.value = false
+
+    
+    isRegisterLoading.value = false
   }
 
   const parseJwt = (jwt: string) => {
@@ -103,5 +117,9 @@ export const useAuthStore = defineStore('auth', () => {
     })
   }
 
-  return { authData, isAuth, isLoading, login, loadCookies, isError, register, logout }
+  return { authData, isAuth, 
+    isRegisterLoading, isLoginLoading, 
+    login, loadCookies, 
+    isRegisterError, isLoginError, 
+    register, logout }
 })

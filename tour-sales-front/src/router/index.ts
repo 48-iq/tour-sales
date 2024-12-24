@@ -1,4 +1,5 @@
 import AuthPage from '@/views/AuthPage.vue'
+import HomePage from '@/views/HomePage.vue'
 import LoginView from '@/views/LoginView.vue'
 import NotFoundPage from '@/views/NotFoundPage.vue'
 import RegisterView from '@/views/RegisterView.vue'
@@ -23,6 +24,11 @@ const router = createRouter({
           component: RegisterView,
         },
       ],
+    },
+    {
+      path: '/home',
+      name: 'home',
+      component: HomePage
     },
     {
       name: 'any',

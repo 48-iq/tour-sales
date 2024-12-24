@@ -1,20 +1,20 @@
 <script lang="ts" setup>
 import BaseInput from '@/components/inputs/BaseInput.vue'
 import BaseButton from '@/components/buttons/BaseButton.vue'
-import BaseLoader from '@/components/loaders/BaseLoader.vue';
 import { useAuthStore } from '@/stores/authStore';
 import { ref } from 'vue';
+import BaseLoader from '../loaders/BaseLoader.vue';
 
 const authStore = useAuthStore();
 
-const loginData = ref({
+const registerData = ref({
   username: '',
   password: ''
 })
 
 const submit = (e: Event) => {
   e.preventDefault();
-  authStore.login(loginData.value);
+  authStore.register(registerData.value);
 }
 </script>
 
@@ -22,18 +22,18 @@ const submit = (e: Event) => {
   <form class="form" @submit="submit">
     <div class="inputs">
       <label>Логин:</label>
-      <BaseInput v-model="loginData.username"/>
+      <BaseInput v-model="registerData.username"/>
       <label>Пароль:</label>
-      <BaseInput type="password" v-model="loginData.password"/>
+      <BaseInput type="password" v-model="registerData.password"/>
     </div>
     <div class="buttons">
-      <BaseButton>Войти</BaseButton>
-      <BaseLoader v-if="authStore.isLoginLoading"/>
-      <span v-else-if="authStore.isLoginError">ошибка</span>
+      <BaseButton>Зарегистрироваться</BaseButton>
+      <BaseLoader v-if="authStore.isRegisterLoading"/>
+      <span v-else-if="authStore.isRegisterError">ошибка</span>
     </div>
     <div class="links">
-      <label>Нет аккаунта?</label>
-      <RouterLink to="/auth/register">Зарегистрироваться</RouterLink>
+      <label>Есть аккаунт?</label>
+      <RouterLink to="/auth/login">Войти</RouterLink>
     </div>
   </form>
 </template>
@@ -62,8 +62,10 @@ const submit = (e: Event) => {
 .buttons {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  column-gap: 30px;
+  column-gap: 10px;
   width: 100%;
+  align-items: center;
+
 }
 .links {
   display: grid;
