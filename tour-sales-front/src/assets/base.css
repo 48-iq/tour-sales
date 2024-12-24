@@ -1,29 +1,23 @@
-
-
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Roboto+Slab:wght@100..900&display=swap');
-
 :root {
-  --color-blue: #217074;
-  --color-green: #37745B;
-  --color-light-green: #8B9D77;
-  --color-white: #E7EAEF;
-  --color-brown: #EDC5AB;
+  --color-dark-green: #1a3524;
+  --color-light-green: #9bc1ac;
+  --color-green: #4f8466;
+  --color-light-blue: #6a9b95;
+  --color-light-brown: #bf7e3a;
+  --color-white: #ffffff;
 }
 
-
 * {
-  font-family: "Roboto Slab", serif;
+  font-family: 'Shantell Sans', serif;
   font-optical-sizing: auto;
   font-weight: weight;
   font-style: normal;
-
+  font-variation-settings:
+    'BNCE' 0,
+    'INFM' 0,
+    'SPAC' 0;
   margin: 0;
   padding: 0;
+  color: var(--color-white);
   box-sizing: border-box;
-
-}
-
-body {
-  background-color: var(--color-white);
-  min-height: 100vh;
 }

@@ -1,58 +1,39 @@
-import ContractsView from '@/views/ContractsView.vue'
-import HomePage from '@/views/HomePage.vue'
-import LoginPage from '@/views/LoginPage.vue'
-import ProfileEditView from '@/views/ProfileEditView.vue'
-import ProfileView from '@/views/ProfileView.vue'
-import RegisterPage from '@/views/RegisterPage.vue'
-import ToursView from '@/views/ToursView.vue'
+import AuthPage from '@/views/AuthPage.vue'
+import LoginView from '@/views/LoginView.vue'
+import NotFoundPage from '@/views/NotFoundPage.vue'
+import RegisterView from '@/views/RegisterView.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/login',
-      name: 'login',
-      component: LoginPage,
-    },
-    {
-      path: '/register',
-      name: 'register',
-      component: RegisterPage,
-    },
-    {
-      path: '/home',
-      name: 'home',
-      component: HomePage,
+      name: 'auth',
+      path: '/auth',
+      component: AuthPage,
       children: [
         {
-          path: 'profile',
-          name: 'profile',
-          component: ProfileView
+          name: 'login',
+          path: 'login',
+          component: LoginView,
         },
         {
-          path: 'profile-edit',
-          name: 'profile-edit',
-          component: ProfileEditView
+          name: 'register',
+          path: 'register',
+          component: RegisterView,
         },
-        {
-          path: 'tours',
-          name: 'tours',
-          component: ToursView
-        },
-        {
-          path: 'contracts',
-          name: 'contracts',
-          component: ContractsView
-        }
-      ]
+      ],
     },
     {
-      path: '/:catchAll(.*)',
       name: 'any',
-      component: LoginPage
+      path: '/:pathMatch(.*)*',
+      component: NotFoundPage,
     },
-
+    {
+      name: 'root',
+      path: '/',
+      redirect: '/auth/login',
+    },
   ],
 })
 
