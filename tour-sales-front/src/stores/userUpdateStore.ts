@@ -14,6 +14,7 @@ export const useUserUpdateStore = defineStore('userUpdate', () => {
     email: '',
     birthDate: '',
     phone: '',
+    categories: [],
   }
 
   const user = ref<User>(defaultUser)
@@ -25,7 +26,7 @@ export const useUserUpdateStore = defineStore('userUpdate', () => {
   const fetchUser = async (id: string) => {
     isLoading.value = true
     isError.value = false
-    const response = await axios.get<User>(`${host}/users/${id}`)
+    const response = await axios.get<User>(`${host}/api/users/${id}`)
     if (response.status === 200) {
       user.value = response.data
     } else {
@@ -37,10 +38,8 @@ export const useUserUpdateStore = defineStore('userUpdate', () => {
   const saveUser = async (data: User) => {
     isLoading.value = true
     isError.value = false
-    const response = await axios.put<User>(`${host}/users/${data.id}`, data)
-    if (response.status === 200) {
-      user.value = response.data
-    } else {
+    const response = await axios.put<User>(`${host}/api/users/update/${data.id}`, data)
+    if (response.status !== 200) {
       isError.value = true
     }
     isLoading.value = false
@@ -49,7 +48,7 @@ export const useUserUpdateStore = defineStore('userUpdate', () => {
   const deleteUser = async (id: string) => {
     isLoading.value = true
     isError.value = false
-    const response = await axios.delete<User>(`${host}/users/${id}`)
+    const response = await axios.delete<User>(`${host}/api/users/delete/${id}`)
     if (response.status === 200) {
       user.value = defaultUser
       authStore.logout()
@@ -59,5 +58,44 @@ export const useUserUpdateStore = defineStore('userUpdate', () => {
     isLoading.value = false
   }
 
-  return { user, isError, isLoading, fetchUser, saveUser, deleteUser }
+  const addCategory = async (category: string) => {
+    try {
+      isLoading.value = true
+      isError.value = false
+      const response = await axios.post<User>(
+        `${host}/api/user-categories/add-user/${category}/${user.value.id}`,
+        category,
+      )
+      if (response.status === 200) {
+        user.value = response.data
+      } else {
+        isError.value = true
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        isError.value = true
+      }
+    }
+  }
+
+  const deleteCategory = async (category: string) => {
+    try {
+      isLoading.value = true
+      isError.value = false
+      const response = await axios.delete<User>(
+        `${host}/api/user-categories/remove-user/${category}/${user.value.id}`,
+      )
+      if (response.status === 200) {
+        user.value = response.data
+      } else {
+        isError.value = true
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        isError.value = true
+      }
+    }
+  }
+
+  return { user, isError, isLoading, fetchUser, saveUser, deleteUser, addCategory, deleteCategory }
 })

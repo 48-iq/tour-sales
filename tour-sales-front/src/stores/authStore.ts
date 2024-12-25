@@ -4,6 +4,7 @@ import { ref } from 'vue'
 import { host } from './host'
 import { jwtDecode } from 'jwt-decode'
 import Cookies from 'cookies-ts'
+import { useRouter } from 'vue-router'
 
 const cookies = new Cookies()
 
@@ -32,12 +33,24 @@ export type registerData = {
 }
 
 export const useAuthStore = defineStore('auth', () => {
-  const authData = ref<authData | null>(null)
+  const authData = ref<authData>({
+    username: '',
+    id: '',
+    roles: [],
+    jwt: '',
+  })
   const isAuth = ref<boolean>(false)
   const isLoginLoading = ref<boolean>(false)
   const isLoginError = ref<boolean>(false)
   const isRegisterLoading = ref<boolean>(false)
   const isRegisterError = ref<boolean>(false)
+  const isAdminPassError = ref<boolean>(false)
+
+  const router = useRouter()
+
+  const isAdmin = () => {
+    return authData.value ? authData.value.roles.includes('ROLE_ADMIN') : false
+  }
 
   const loadCookies = () => {
     const jwt = cookies.get('jwt')
@@ -50,10 +63,36 @@ export const useAuthStore = defineStore('auth', () => {
     cookies.remove('jwt')
   }
 
+  const becomeAdmin = async (adminPassword: string) => {
+    try {
+      isAdminPassError.value = false
+      const response = await axios.post<string>(
+        `${host}/api/auth/become-admin`,
+        { adminPassword },
+        {
+          headers: {
+            Authorization: `Bearer ${authData.value.jwt}`,
+          },
+        },
+      )
+      if (response.status === 200) {
+        const jwt = response.data
+        authData.value = parseJwt(jwt)
+        saveCookies()
+        isAuth.value = true
+      } else {
+        isAdminPassError.value = true
+      }
+    } catch (error) {
+      if (error instanceof Error) isAdminPassError.value = true
+    }
+  }
+
   const logout = () => {
     removeCookies()
-    authData.value = null
+    authData.value = { username: '', id: '', roles: [], jwt: '' }
     isAuth.value = false
+    router.push({ name: 'login' })
   }
 
   const login = async (data: loginData) => {
@@ -66,12 +105,12 @@ export const useAuthStore = defineStore('auth', () => {
         authData.value = parseJwt(jwt)
         saveCookies()
         isAuth.value = true
+        router.push({ name: 'home' })
       } else {
         isLoginError.value = true
       }
     } catch (error) {
-      if (error instanceof Error) 
-        isLoginError.value = true
+      if (error instanceof Error) isLoginError.value = true
     }
     isLoginLoading.value = false
   }
@@ -86,15 +125,14 @@ export const useAuthStore = defineStore('auth', () => {
         authData.value = parseJwt(jwt)
         saveCookies()
         isAuth.value = true
+        router.push({ name: 'home' })
       } else {
         isRegisterError.value = true
-      } 
+      }
     } catch (error) {
-      if (error instanceof Error) 
-        isRegisterError.value = true
+      if (error instanceof Error) isRegisterError.value = true
     }
 
-    
     isRegisterLoading.value = false
   }
 
@@ -117,9 +155,19 @@ export const useAuthStore = defineStore('auth', () => {
     })
   }
 
-  return { authData, isAuth, 
-    isRegisterLoading, isLoginLoading, 
-    login, loadCookies, 
-    isRegisterError, isLoginError, 
-    register, logout }
+  return {
+    authData,
+    isAuth,
+    isRegisterLoading,
+    isLoginLoading,
+    login,
+    loadCookies,
+    isRegisterError,
+    isLoginError,
+    register,
+    logout,
+    isAdmin,
+    becomeAdmin,
+    isAdminPassError,
+  }
 })
