@@ -26,7 +26,6 @@ create table companies(
     id text not null primary key,
     name text not null,
     description text,
-    created_at timestamp,
     email text
 );
 
@@ -34,10 +33,9 @@ create table tours (
     id text not null primary key,
     title text not null,
     description text,
-    created_at timestamp not null,
     price double precision not null,
-    start_at timestamp not null,
-    finish_at timestamp not null,
+    start_at date not null,
+    finish_at date not null,
     available_count integer not null,
     company_id text not null references companies(id)
 );
@@ -80,8 +78,6 @@ create table cities (
 create table tours_cities(
     tour_id text not null references tours(id),
     city_name text not null references cities(name),
-    arrive_at timestamp not null,
-    depart_at timestamp not null,
     primary key (tour_id, city_name)
 );
 

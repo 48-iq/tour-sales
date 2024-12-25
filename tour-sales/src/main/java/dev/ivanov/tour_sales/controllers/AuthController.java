@@ -1,5 +1,6 @@
 package dev.ivanov.tour_sales.controllers;
 
+import dev.ivanov.tour_sales.dto.auth.BecomeAdminDto;
 import dev.ivanov.tour_sales.dto.auth.LoginDto;
 import dev.ivanov.tour_sales.dto.auth.RegisterDto;
 import dev.ivanov.tour_sales.services.AuthService;
@@ -27,4 +28,12 @@ public class AuthController {
         return ResponseEntity.ok(jwt);
     }
 
+    @PostMapping("/become-admin")
+    public ResponseEntity<?> becomeAdmin(@RequestBody BecomeAdminDto becomeAdminDto) {
+        try {
+            return ResponseEntity.ok(authService.becomeAdmin(becomeAdminDto.getAdminPassword()));
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 }

@@ -1,12 +1,13 @@
 package dev.ivanov.tour_sales.controllers;
 
+import dev.ivanov.tour_sales.dto.user.UserUpdateDto;
 import dev.ivanov.tour_sales.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/users")
 public class UserController {
 
     @Autowired
@@ -22,6 +23,13 @@ public class UserController {
     @GetMapping("/{userId}")
     public ResponseEntity<?> getUser(@PathVariable String userId) {
         return ResponseEntity.ok(userService.getUserById(userId));
+    }
+
+    @PutMapping("/update/{userId}")
+    public ResponseEntity<?> updateUser(@PathVariable String userId,
+                                        @RequestBody UserUpdateDto userUpdateDto) {
+        userService.updateUser(userId, userUpdateDto);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/by-tour/{tourId}")

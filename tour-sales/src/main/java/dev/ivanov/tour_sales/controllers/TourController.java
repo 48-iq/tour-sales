@@ -8,13 +8,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/tour")
+@RequestMapping("/api/tours")
 public class TourController {
 
     @Autowired
     private TourService tourService;
 
-    @GetMapping("/{tourId}")
+    @GetMapping("/by-id/{tourId}")
     public ResponseEntity<?> getTour(@PathVariable String tourId) {
         return ResponseEntity.ok(tourService.getTourById(tourId));
     }
@@ -38,6 +38,11 @@ public class TourController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<?> getAllTours() {
+        return ResponseEntity.ok(tourService.getAllTours());
+    }
+
     @GetMapping("/find")
     public ResponseEntity<?> findToursByNameOrDescription(@RequestParam String title,
                                                           @RequestParam String city) {
@@ -47,5 +52,17 @@ public class TourController {
     @GetMapping("/by-company/{companyId}")
     public ResponseEntity<?> getToursByCompany(@PathVariable String companyId) {
         return ResponseEntity.ok(tourService.getToursByCompanyId(companyId));
+    }
+
+    @PostMapping("/add-city/{tourId}/{cityId}")
+    public ResponseEntity<?> addCityToTour(@PathVariable String tourId, @PathVariable String cityId) {
+        tourService.addCityToTour(cityId, tourId);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/remove-city/{tourId}/{cityId}")
+    public ResponseEntity<?> removeCityFromTour(@PathVariable String tourId, @PathVariable String cityId) {
+        tourService.removeCityFromTour(cityId, tourId);
+        return ResponseEntity.ok().build();
     }
 }

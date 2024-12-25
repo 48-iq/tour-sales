@@ -7,12 +7,15 @@ import dev.ivanov.tour_sales.entities.User;
 import dev.ivanov.tour_sales.exceptions.EntityNotFoundException;
 import dev.ivanov.tour_sales.repositories.RoleRepository;
 import dev.ivanov.tour_sales.repositories.UserRepository;
+import dev.ivanov.tour_sales.security.UserDetailsImpl;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -41,6 +44,9 @@ public class AuthService {
 
     @Autowired
     private RoleRepository roleRepository;
+
+    @Value("${app.admin-password}")
+    private String adminPassword;
 
     @Transactional
     public String register(RegisterDto registerDto) {
@@ -81,4 +87,16 @@ public class AuthService {
     }
 
 
+    public String becomeAdmin(String adminPassword) {
+        if (this.adminPassword.equals(adminPassword)) {
+            UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext()
+                    .getAuthentication().getPrincipal();
+
+            User user = userDetails.getUser();
+            roleRepository.setRoleAdminToUser(user.getId());
+            return jwtUtils.generate(user, List.of("ROLE_USER", "ROLE_ADMIN"));
+        } else {
+            throw new IllegalArgumentException("Wrong admin password");
+        }
+    }
 }

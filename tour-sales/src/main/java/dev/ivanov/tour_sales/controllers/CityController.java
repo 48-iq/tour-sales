@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/city")
+@RequestMapping("/api/cities")
 public class CityController {
     @Autowired
     private CityService cityService;
@@ -20,12 +20,12 @@ public class CityController {
     @PostMapping("/create")
     public ResponseEntity<?> add(@RequestBody CityCreateDto cityCreateDto) {
         cityService.createCity(cityCreateDto);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(cityService.getAllCities());
     }
 
     @DeleteMapping("/delete/{cityName}")
     public ResponseEntity<?> deleteCity(@PathVariable String cityName) {
         cityService.deleteCity(cityName);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(cityService.getAllCities());
     }
 }

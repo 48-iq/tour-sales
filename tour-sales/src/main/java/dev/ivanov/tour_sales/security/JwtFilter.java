@@ -57,8 +57,11 @@ public class JwtFilter extends OncePerRequestFilter {
 
                 Authentication authentication =
                         new UsernamePasswordAuthenticationToken(new UserDetailsImpl(user, roles), null);
-                if (SecurityContextHolder.getContext().getAuthentication() == null)
+                if (SecurityContextHolder.getContext().getAuthentication() == null ||
+                        !SecurityContextHolder.getContext().getAuthentication().isAuthenticated())
                     SecurityContextHolder.getContext().setAuthentication(authentication);
+                System.out.println("principal: ");
+                System.out.println(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
             }
             filterChain.doFilter(request, response);
         } catch (JWTVerificationException e) {

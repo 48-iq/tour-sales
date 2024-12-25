@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/country")
+@RequestMapping("/api/countries")
 public class CountryController {
 
     @Autowired
@@ -20,12 +20,12 @@ public class CountryController {
     @PostMapping("/create")
     public ResponseEntity<?> createCountry(@RequestParam String name) {
         countryService.createCountry(name);
-        return ResponseEntity.ok().build();
+        return  ResponseEntity.ok(countryService.getAllCountries());
     }
 
     @DeleteMapping("/delete/{countryId}")
     public ResponseEntity<?> deleteCountry(@PathVariable String countryId) {
         countryService.deleteCountry(countryId);
-        return ResponseEntity.ok().build();
+        return  ResponseEntity.ok(countryService.getAllCountries());
     }
 }

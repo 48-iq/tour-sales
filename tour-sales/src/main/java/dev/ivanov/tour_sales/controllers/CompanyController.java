@@ -7,7 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RestController("/api/company")
+@RestController
+@RequestMapping("/api/companies")
 public class CompanyController {
 
     @Autowired
@@ -37,8 +38,8 @@ public class CompanyController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/find")
-    public ResponseEntity<?> findCompaniesByNameOrEmail(@RequestParam String query) {
-        return ResponseEntity.ok(companyService.findCompaniesByNameOrEmail(query));
+    @GetMapping("/all")
+    public ResponseEntity<?> getAllCompanies(  ) {
+        return ResponseEntity.ok(companyService.getAllComanies());
     }
 }

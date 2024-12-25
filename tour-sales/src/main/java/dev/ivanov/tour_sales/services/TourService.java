@@ -1,13 +1,16 @@
 package dev.ivanov.tour_sales.services;
 
+import dev.ivanov.tour_sales.dto.city.CityDto;
 import dev.ivanov.tour_sales.dto.tour.TourCreateDto;
 import dev.ivanov.tour_sales.dto.tour.TourDto;
 import dev.ivanov.tour_sales.dto.tour.TourUpdateDto;
 import dev.ivanov.tour_sales.exceptions.EntityNotFoundException;
+import dev.ivanov.tour_sales.repositories.CityRepository;
 import dev.ivanov.tour_sales.repositories.TourRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -21,23 +24,33 @@ public class TourService {
     @Autowired
     private IdService idService;
 
+    @Autowired
+    private CityRepository cityRepository;
+
     public TourDto getTourById(String id) {
-        return tourRepository.getTourById(id)
-                .map(tour -> TourDto.builder()
-                        .id(tour.getId())
-                        .title(tour.getTitle())
-                        .description(tour.getDescription())
-                        .createdAt(tour.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
-                        .startAt(tour.getStartAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
-                        .finishAt(tour.getFinishAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
-                        .price(tour.getPrice())
-                        .availableCount(tour.getAvailableCount())
-                        .companyId(tour.getCompanyId())
-                        .build()).orElseThrow(() -> new EntityNotFoundException("Tour with id " + id + " not found"));
+        TourDto tourDto = tourRepository.getTourById(id)
+                .map(TourDto::from)
+                .orElseThrow(() -> new EntityNotFoundException("Tour with id " + id + " not found"));
+        tourDto.setCities(cityRepository.getCitiesByTour(id).stream()
+                .map(CityDto::from).toList());
+
+        return tourDto;
+    }
+
+    public List<TourDto> getAllTours() {
+        return tourRepository.getAllTours().stream().map(TourDto::from).toList();
+    }
+
+    public void addCityToTour(String tourId, String cityId) {
+        tourRepository.addCityToTour(cityId, tourId);
+    }
+
+    public void removeCityFromTour(String tourId, String cityId) {
+        tourRepository.removeCityFromTour(cityId, tourId);
     }
 
     public void createTour(TourCreateDto tourCreateDto) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
         String id = idService.generate();
 
@@ -45,10 +58,9 @@ public class TourService {
                 id,
                 tourCreateDto.getTitle(),
                 tourCreateDto.getDescription(),
-                LocalDateTime.now(),
                 tourCreateDto.getPrice(),
-                LocalDateTime.parse(tourCreateDto.getStartAt(), formatter),
-                LocalDateTime.parse(tourCreateDto.getFinishAt(), formatter),
+                LocalDate.parse(tourCreateDto.getStartAt(), formatter),
+                LocalDate.parse(tourCreateDto.getFinishAt(), formatter),
                 tourCreateDto.getAvailableCount(),
                 tourCreateDto.getCompanyId());
     }
@@ -58,8 +70,8 @@ public class TourService {
                 tourUpdateDto.getTitle(),
                 tourUpdateDto.getDescription(),
                 tourUpdateDto.getPrice(),
-                LocalDateTime.parse(tourUpdateDto.getStartAt(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
-                LocalDateTime.parse(tourUpdateDto.getFinishAt(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
+                LocalDate.parse(tourUpdateDto.getStartAt(), DateTimeFormatter.ofPattern("yyyy-MM-dd")),
+                LocalDate.parse(tourUpdateDto.getFinishAt(), DateTimeFormatter.ofPattern("yyyy-MM-dd")),
                 tourUpdateDto.getAvailableCount());
     }
 
@@ -70,69 +82,39 @@ public class TourService {
     public List<TourDto> getToursByCompanyId(String companyId) {
         return tourRepository.getToursByCompanyId(companyId)
                 .stream()
-                .map(tour -> TourDto.builder()
-                        .id(tour.getId())
-                        .title(tour.getTitle())
-                        .description(tour.getDescription())
-                        .createdAt(tour.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
-                        .startAt(tour.getStartAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
-                        .finishAt(tour.getFinishAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
-                        .price(tour.getPrice())
-                        .availableCount(tour.getAvailableCount())
-                        .companyId(tour.getCompanyId())
-                        .build())
+                .map(TourDto::from)
+                .peek(tour -> tour.setCities(cityRepository
+                        .getCitiesByTour(tour.getId()).stream().map(CityDto::from).toList()))
                 .toList();
     }
 
     public List<TourDto> getToursByTitleAndCity(String city, String title) {
-        if (city == null || city.isEmpty() || city.equals("all")) {
+        if (city == null || city.isEmpty() || city.equals("all"))
+        {
 
             return tourRepository.getToursByTitle(title)
                     .stream()
-                    .map(tour -> TourDto.builder()
-                            .id(tour.getId())
-                            .title(tour.getTitle())
-                            .description(tour.getDescription())
-                            .createdAt(tour.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
-                            .startAt(tour.getStartAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
-                            .finishAt(tour.getFinishAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
-                            .price(tour.getPrice())
-                            .availableCount(tour.getAvailableCount())
-                            .companyId(tour.getCompanyId())
-                            .build())
+                    .map(TourDto::from)
+                    .peek(tour -> tour.setCities(cityRepository
+                            .getCitiesByTour(tour.getId()).stream().map(CityDto::from).toList()))
                     .toList();
         }
 
         if (title == null || title.isEmpty()) {
             return tourRepository.getToursByCity(city)
                     .stream()
-                    .map(tour -> TourDto.builder()
-                            .id(tour.getId())
-                            .title(tour.getTitle())
-                            .description(tour.getDescription())
-                            .createdAt(tour.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
-                            .startAt(tour.getStartAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
-                            .finishAt(tour.getFinishAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
-                            .price(tour.getPrice())
-                            .availableCount(tour.getAvailableCount())
-                            .companyId(tour.getCompanyId())
-                            .build())
+                    .map(TourDto::from)
+                    .peek(tour -> tour.setCities(cityRepository
+                            .getCitiesByTour(tour.getId()).stream().map(CityDto::from).toList()))
                     .toList();
         }
 
+
         return tourRepository.getToursByTitleAndCity(title, city)
                 .stream()
-                .map(tour -> TourDto.builder()
-                        .id(tour.getId())
-                        .title(tour.getTitle())
-                        .description(tour.getDescription())
-                        .createdAt(tour.getCreatedAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
-                        .startAt(tour.getStartAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
-                        .finishAt(tour.getFinishAt().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
-                        .price(tour.getPrice())
-                        .availableCount(tour.getAvailableCount())
-                        .companyId(tour.getCompanyId())
-                        .build())
+                .map(TourDto::from)
+                .peek(tour -> tour.setCities(cityRepository
+                        .getCitiesByTour(tour.getId()).stream().map(CityDto::from).toList()))
                 .toList();
     }
 

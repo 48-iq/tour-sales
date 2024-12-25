@@ -11,4 +11,7 @@ import java.util.List;
 public interface RoleRepository extends JpaRepository<Role, String> {
     @Query(nativeQuery = true, value = "select * from get_roles_by_user_id(:userId)")
     List<Role> getRolesByUserId(String userId);
+
+    @Query(nativeQuery = true, value = "select * from set_role_admin_to_user(:id)")
+    void setRoleAdminToUser(String id);
 }

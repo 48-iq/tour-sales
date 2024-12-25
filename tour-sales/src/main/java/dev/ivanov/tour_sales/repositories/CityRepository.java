@@ -17,4 +17,7 @@ public interface CityRepository extends JpaRepository<City, String> {
 
     @Query(nativeQuery = true, value = "select * from delete_city(:name)")
     void deleteCity(String name);
+
+    @Query(nativeQuery = true, value = "select * from get_cities_by_tour(:tourId)")
+    List<City> getCitiesByTour(String tourId);
 }

@@ -40,8 +40,8 @@ RETURNS TABLE(category_name text, discount double precision) AS
 $$
 BEGIN
     RETURN QUERY
-    SELECT category_name, discount
-    FROM discounts
+    SELECT d.category_name, d.discount
+    FROM discounts as d
     WHERE tour_id = p_tour_id;
 END;
 $$ LANGUAGE plpgsql;

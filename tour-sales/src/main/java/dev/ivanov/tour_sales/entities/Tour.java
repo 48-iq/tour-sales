@@ -6,7 +6,9 @@ import jakarta.persistence.Table;
 import lombok.*;
 
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "tours")
@@ -20,10 +22,9 @@ public class Tour {
     private String id;
     private String title;
     private String description;
-    private LocalDateTime createdAt;
     private Double price;
-    private LocalDateTime startAt;
-    private LocalDateTime finishAt;
+    private LocalDate startAt;
+    private LocalDate finishAt;
     private Integer availableCount;
     private String companyId;
 }

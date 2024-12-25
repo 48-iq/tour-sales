@@ -1,33 +1,31 @@
-CREATE OR REPLACE FUNCTION create_company(p_id text, p_name text, p_description text, p_created_at timestamp, p_email text)
+CREATE OR REPLACE FUNCTION create_company(p_id text, p_name text, p_description text, p_email text)
 RETURNS void AS
 $$
 BEGIN
-    INSERT INTO companies(id, name, description, created_at, email)
-    VALUES (p_id, p_name, p_description, p_created_at, p_email);
+    INSERT INTO companies(id, name, description, email)
+    VALUES (p_id, p_name, p_description,  p_email);
 END;
 $$ LANGUAGE plpgsql;
 
 
-CREATE OR REPLACE FUNCTION find_company_by_name_or_email(query text)
-RETURNS TABLE(id text, name text, description text, created_at timestamp, email text) AS
+CREATE OR REPLACE FUNCTION get_all_companies()
+RETURNS TABLE(id text, name text, description text, email text) AS
 $$
 BEGIN
     RETURN QUERY
-    SELECT id, name, description, created_at, email
-    FROM companies
-    WHERE name like '%' || query || '%' OR email like '%' || query || '%';
+    SELECT c.id, c.name, c.description, c.email FROM companies as c;
 END;
 $$ LANGUAGE plpgsql;
 
 
 CREATE OR REPLACE FUNCTION get_company_by_id(p_id text)
-RETURNS TABLE(id text, name text, description text, created_at timestamp, email text) AS
+RETURNS TABLE(id text, name text, description text, email text) AS
 $$
 BEGIN
     RETURN QUERY
-    SELECT id, name, description, created_at, email
-    FROM companies
-    WHERE id = p_id;
+    SELECT c.id, c.name, c.description, c.email
+    FROM companies as c
+    WHERE c.id = p_id;
 END;
 $$ LANGUAGE plpgsql;
 
