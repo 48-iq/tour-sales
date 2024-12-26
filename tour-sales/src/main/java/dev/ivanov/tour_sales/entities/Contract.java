@@ -18,5 +18,4 @@ public class Contract {
     private String tourId;
     private String userId;
     private Double price;
-    private Boolean wasPaid;
 }

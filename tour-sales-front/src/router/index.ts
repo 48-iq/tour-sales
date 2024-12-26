@@ -16,6 +16,7 @@ import TourCreateView from '@/views/TourCreateView.vue'
 import ToursView from '@/views/ToursView.vue'
 import TourView from '@/views/TourView.vue'
 import TourUpdateView from '@/views/TourUpdateView.vue'
+import ContractsView from '@/views/ContractsView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -106,6 +107,11 @@ const router = createRouter({
           props: true,
           name: 'tour-update',
           component: TourUpdateView,
+        },
+        {
+          path: '/contracts',
+          name: 'contracts',
+          component: ContractsView,
         },
       ],
     },

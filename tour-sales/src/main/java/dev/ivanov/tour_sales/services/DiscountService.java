@@ -4,7 +4,13 @@ import dev.ivanov.tour_sales.dto.discount.DiscountCreateDto;
 import dev.ivanov.tour_sales.dto.discount.DiscountDto;
 import dev.ivanov.tour_sales.entities.Discount;
 import dev.ivanov.tour_sales.entities.DiscountView;
+import dev.ivanov.tour_sales.entities.User;
+import dev.ivanov.tour_sales.entities.UserCategory;
+import dev.ivanov.tour_sales.exceptions.EntityNotFoundException;
 import dev.ivanov.tour_sales.repositories.DiscountRepository;
+import dev.ivanov.tour_sales.repositories.TourRepository;
+import dev.ivanov.tour_sales.repositories.UserCategoryRepository;
+import dev.ivanov.tour_sales.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +21,15 @@ public class DiscountService {
 
     @Autowired
     private DiscountRepository discountRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private TourRepository tourRepository;
+
+    @Autowired
+    private UserCategoryRepository userCategoryRepository;
 
     public void createDiscount(DiscountCreateDto discountCreateDto) {
         discountRepository.createDiscount(discountCreateDto.getCategoryName(),
@@ -27,7 +42,20 @@ public class DiscountService {
     }
 
     public double getPriceWithDiscount(String tourId, String userId) {
-        return discountRepository.getPriceWithDiscount(tourId, userId);
+        List<DiscountView> discountViews = discountRepository.getDiscountsByTour(tourId);
+        List<UserCategory> userCategories = userCategoryRepository.getCategoriesByUserId(userId);
+        Double price = tourRepository.getTourById(tourId)
+                .orElseThrow(() -> new EntityNotFoundException("Tour not found")).getPrice();
+        Double maxDiscount = 0.0;
+        for (DiscountView discountView : discountViews) {
+            if (discountView.getDiscount() > maxDiscount
+                    && userCategories.stream().anyMatch(uc -> uc.getTitle().equals(discountView.getCategoryName()))) {
+                maxDiscount = discountView.getDiscount();
+            }
+        }
+
+        return price * (1 - maxDiscount / 100);
+
     }
 
     public List<DiscountView> getAllDiscounts() {

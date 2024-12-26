@@ -19,20 +19,9 @@ public class ContractController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/by-user/{userId}")
-    public ResponseEntity<?> getContractsByUser(@PathVariable String userId) {
-        return ResponseEntity.ok(contractService.getContractsByUser(userId));
-    }
-
-    @GetMapping("/by-tour/{tourId}")
-    public ResponseEntity<?> getContractsByTour(@PathVariable String tourId) {
-        return ResponseEntity.ok(contractService.getContractsByTour(tourId));
-    }
-
-    @PutMapping("/pay-for/{contractId}")
-    public ResponseEntity<?> payForContract(@PathVariable String contractId) {
-        contractService.updateContract(contractId, true);
-        return ResponseEntity.ok().build();
+    @GetMapping("/all")
+    public ResponseEntity<?> getAllContracts() {
+        return ResponseEntity.ok(contractService.getAllContracts());
     }
 
     @DeleteMapping("/delete/{contractId}")

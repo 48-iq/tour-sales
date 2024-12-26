@@ -63,7 +63,7 @@ export const useTourStore = defineStore('tour', () => {
     isError.value = false
     isLoading.value = true
     try {
-      const response = await axios.post(`${host}/api/discounts/create/`, {
+      const response = await axios.post(`${host}/api/discounts/create`, {
         tourId: id,
         categoryName,
         discount,

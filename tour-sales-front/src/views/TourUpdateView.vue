@@ -63,7 +63,7 @@
       <ul>
         <li v-for="city in tourStore.tour.cities" :key="city.name">
           {{ city.name }}
-          <button>Удалить</button>
+          <button @click="removeCity(city.name)">Удалить</button>
         </li>
       </ul>
     </div>
@@ -73,7 +73,7 @@
     <div class="discount-form">
       <div class="form-group">
         <label for="discount-category">Категория</label>
-        <select v-model="selectedDiscountCategory" id="discount-category" required>
+        <select v-model="newDiscount.category" id="discount-category" required>
           <option
             v-for="category in userCategoriesStore.userCategories"
             :key="category.title"
@@ -87,7 +87,7 @@
       <div class="form-group">
         <label for="discount-value">Скидка (%)</label>
         <input
-          v-model="discountValue"
+          v-model="newDiscount.value"
           id="discount-value"
           type="number"
           min="0"
@@ -96,7 +96,7 @@
         />
       </div>
 
-      <button>Добавить скидку</button>
+      <button @click.prevent="addDiscount">Добавить скидку</button>
     </div>
 
     <!-- Список скидок -->
@@ -139,13 +139,24 @@ const onSubmit = async () => {
 
 const addCityName = ref<string>('')
 
+const newDiscount = ref<{ category: string; value: number }>({
+  category: '',
+  value: 0,
+})
+
 const addCity = async () => {
   tourStore.addCity(params.id, addCityName.value)
   addCityName.value = ''
 }
 
-const selectedDiscountCategory = ref<string | null>(null)
-const discountValue = ref<number | null>(null)
+const removeCity = async (cityName: string) => {
+  tourStore.removeCity(params.id, cityName)
+}
+
+const addDiscount = async () => {
+  console.log('addDiscount')
+  tourStore.createDiscount(params.id, newDiscount.value.category, newDiscount.value.value)
+}
 </script>
 
 <style scoped>

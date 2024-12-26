@@ -44,8 +44,7 @@ create table contracts(
     id text not null primary key,
     tour_id text not null references tours(id) on delete cascade,
     user_id text not null references users(id) on delete cascade,
-    price double precision not null,
-    was_paid boolean not null
+    price double precision not null
 );
 
 

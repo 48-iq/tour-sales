@@ -22,6 +22,9 @@ public interface TourRepository extends JpaRepository<Tour, String> {
     @Query(nativeQuery = true, value = "select * from update_tour_by_id(:id, :title, :description, :price, :startAt, :finishAt, :availableCount)")
     void updateTour(String id, String title, String description, Double price, LocalDate startAt, LocalDate finishAt, Integer availableCount);
 
+    @Query(nativeQuery = true, value = "select * from minus_tour_available_count(:id)")
+    void minusTourAvailableCount(String id);
+
     @Query(nativeQuery = true, value = "select * from get_tour_by_id(:id)")
     Optional<Tour> getTourById(String id);
 

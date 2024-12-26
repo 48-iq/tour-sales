@@ -10,6 +10,17 @@ END;
 $$ LANGUAGE plpgsql;
 
 
+CREATE OR REPLACE FUNCTION get_all_users()
+RETURNS TABLE(id text, username text, password text, name text, surname text, email text, birth_date date, phone text) AS
+$$
+BEGIN
+    RETURN QUERY
+    SELECT u.id, u.username, u.password text, u.name, u.surname, u.email, u.birth_date, u.phone
+    FROM users u;
+END;
+$$ LANGUAGE plpgsql;
+
+
 
 CREATE OR REPLACE FUNCTION create_user(p_id text, p_username text, p_password text, p_name text, p_surname text, p_email text, p_birth_date date, p_phone text)
 RETURNS void AS

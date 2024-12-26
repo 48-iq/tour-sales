@@ -77,6 +77,17 @@ END;
 $$ LANGUAGE plpgsql;
 
 
+
+CREATE OR REPLACE FUNCTION minus_tour_available_count(p_id text)
+RETURNS void AS
+$$
+BEGIN
+    update tours
+    set available_count = available_count - 1
+    where id = p_id;
+END;
+$$ LANGUAGE plpgsql;
+
 CREATE OR REPLACE FUNCTION update_tour_by_id(p_id text,
         p_title text,
         p_description text,

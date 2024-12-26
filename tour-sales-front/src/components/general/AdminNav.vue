@@ -8,6 +8,7 @@ import { RouterLink } from 'vue-router'
     <RouterLink to="/categories"><div class="link">Категории</div></RouterLink>
     <RouterLink to="/create-company"><div class="link">Добавить компанию</div></RouterLink>
     <RouterLink to="/countries"><div class="link">Страны</div></RouterLink>
+    <RouterLink to="/contracts"><div class="link">Контракты</div></RouterLink>
     <RouterLink to="/cities"><div class="link bottom-link">Города</div></RouterLink>
   </nav>
 </template>

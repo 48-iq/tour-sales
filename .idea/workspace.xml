@@ -5,36 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d0f74cf7-3114-4a86-9e2b-332712ae5e86" name="Changes" comment="a">
-      <change afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/DateFormats.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/dto/discount/DiscountDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/entities/DiscountId.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/entities/DiscountView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/script_01_init.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/script_01_init.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/script_06_discounts_procedures.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/script_06_discounts_procedures.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/script_03_users_procedures.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/script_03_users_procedures.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/script_08_tours_procedures.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/script_08_tours_procedures.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/script_09_contracts_procedures.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/script_09_contracts_procedures.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tour-sales-front/src/components/general/AdminNav.vue" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales-front/src/components/general/AdminNav.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tour-sales-front/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales-front/src/router/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales-front/src/stores/contractsStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales-front/src/stores/contractsStore.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tour-sales-front/src/stores/tourStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales-front/src/stores/tourStore.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tour-sales-front/src/stores/toursStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales-front/src/stores/toursStore.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tour-sales-front/src/views/CitiesView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales-front/src/views/CitiesView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tour-sales-front/src/views/CompaniesView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales-front/src/views/CompaniesView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tour-sales-front/src/views/CompanyUpdateView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales-front/src/views/CompanyUpdateView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tour-sales-front/src/views/CountriesView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales-front/src/views/CountriesView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tour-sales-front/src/views/CreateCompanyView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales-front/src/views/CreateCompanyView.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tour-sales-front/src/views/TourUpdateView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales-front/src/views/TourUpdateView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tour-sales-front/src/views/ToursView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales-front/src/views/ToursView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/controllers/ContractController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/controllers/ContractController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/controllers/DiscountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/controllers/DiscountController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/controllers/TourController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/controllers/TourController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/dto/company/CompanyDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/dto/company/CompanyDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/dto/country/CreateCountryDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/dto/tour/TourDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/dto/tour/TourDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/entities/Discount.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/entities/Discount.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/repositories/DiscountRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/repositories/DiscountRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/controllers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/entities/Contract.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/entities/Contract.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/repositories/ContractRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/repositories/ContractRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/repositories/TourRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/repositories/TourRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/services/CityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/services/CityService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/repositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/repositories/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/services/ContractService.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/services/ContractService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/services/DiscountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/services/DiscountService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/services/TourService.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/services/TourService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales/src/main/java/dev/ivanov/tour_sales/services/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

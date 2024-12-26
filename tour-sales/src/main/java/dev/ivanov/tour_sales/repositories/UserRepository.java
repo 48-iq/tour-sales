@@ -30,4 +30,7 @@ public interface UserRepository extends JpaRepository<User, String> {
 
     @Query(nativeQuery = true, value = "select * from get_user_by_username(:username)")
     Optional<User> getUserByUsername(String username);
+
+    @Query(nativeQuery = true, value = "select * from get_all_users()")
+    List<User> getAllUsers();
 }

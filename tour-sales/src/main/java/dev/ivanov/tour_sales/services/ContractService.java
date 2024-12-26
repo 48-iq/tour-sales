@@ -4,6 +4,7 @@ import dev.ivanov.tour_sales.dto.contract.ContractCreateDto;
 import dev.ivanov.tour_sales.dto.contract.ContractDto;
 import dev.ivanov.tour_sales.exceptions.EntityNotFoundException;
 import dev.ivanov.tour_sales.repositories.ContractRepository;
+import dev.ivanov.tour_sales.repositories.TourRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,9 @@ public class ContractService {
     @Autowired
     private DiscountService discountService;
 
+    @Autowired
+    private TourRepository tourRepository;
+
     public void createContract(ContractCreateDto contractCreateDto) {
 
         String id = idService.generate();
@@ -29,20 +33,18 @@ public class ContractService {
                 contractCreateDto.getUserId());
 
 
-
         contractRepository.createContract(id,
                 contractCreateDto.getTourId(),
                 contractCreateDto.getUserId(),
-                false);
+                price);
+
+        tourRepository.minusTourAvailableCount(contractCreateDto.getTourId());
     }
 
     public void deleteContract(String id) {
         contractRepository.deleteContract(id);
     }
 
-    public void updateContract(String id, Boolean wasPaid) {
-        contractRepository.updateContract(id, wasPaid);
-    }
 
     public List<ContractDto> getContractsByUser(String userId) {
         return contractRepository.getContractsByUser(userId)
@@ -51,33 +53,19 @@ public class ContractService {
                         .userId(contract.getUserId())
                         .tourId(contract.getTourId())
                         .price(contract.getPrice())
-                        .wasPaid(contract.getWasPaid())
                         .build()
                 ).toList();
     }
 
-    public List<ContractDto> getContractsByTour(String tourId) {
-        return contractRepository.getContractsByTour(tourId)
+    public List<ContractDto> getAllContracts() {
+        return contractRepository.getAllContracts()
                 .stream().map(contract -> ContractDto.builder()
                         .id(contract.getId())
                         .userId(contract.getUserId())
                         .tourId(contract.getTourId())
                         .price(contract.getPrice())
-                        .wasPaid(contract.getWasPaid())
                         .build()
                 ).toList();
-    }
-
-    public ContractDto getContractById(String id) {
-        return contractRepository.getContractById(id)
-                .map(contract -> ContractDto.builder()
-                        .id(contract.getId())
-                        .userId(contract.getUserId())
-                        .tourId(contract.getTourId())
-                        .price(contract.getPrice())
-                        .wasPaid(contract.getWasPaid())
-                        .build()
-                ).orElseThrow(() -> new EntityNotFoundException("Contract with id " + id + " not found"));
     }
 
 

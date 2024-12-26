@@ -13,7 +13,7 @@ public class DiscountController {
     private DiscountService discountService;
 
     @PostMapping("/create")
-    public ResponseEntity<?> createDiscount(DiscountCreateDto discountCreateDto) {
+    public ResponseEntity<?> createDiscount(@RequestBody DiscountCreateDto discountCreateDto) {
         discountService.createDiscount(discountCreateDto);
         return ResponseEntity.ok().build();
     }

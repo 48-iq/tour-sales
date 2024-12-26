@@ -58,6 +58,15 @@ public class UserService {
                 .toList();
     }
 
+    public List<UserDto> getAllUsers() {
+        return userRepository.getAllUsers()
+                .stream()
+                .map(UserDto::fromUser)
+                .peek(dto -> dto.setCategories(userCategoryRepository.getCategoriesByUserId(dto.getId())
+                        .stream().map(UserCategoryDto::fromCategory).toList()))
+                .toList();
+    }
+
     public void deleteUserById(String id) {
         userRepository.deleteUserById(id);
     }

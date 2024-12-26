@@ -3,29 +3,44 @@ import { useAuthStore } from './authStore'
 import axios from 'axios'
 import { host } from './host'
 import { defineStore } from 'pinia'
+import type { User } from './userStore'
 
 export type Contract = {
   id: string
   tourId: string
   userId: string
   price: number
-  wasPaid: boolean
 }
 
 export const useContractsStore = defineStore('contracts', () => {
   const contracts = ref<Contract[]>([])
   const isError = ref<boolean>(false)
   const isLoading = ref<boolean>(false)
+  const users = ref<User[]>([])
 
   const authStore = useAuthStore()
+
+  const fetchUsers = async () => {
+    isLoading.value = true
+    isError.value = false
+    try {
+      const response = await axios.get<User[]>(`${host}/api/users/all`, {})
+      if (response.status === 200) {
+        users.value = response.data
+      } else {
+        isError.value = true
+      }
+    } catch (error) {
+      if (error instanceof Error) isError.value = true
+    }
+    isLoading.value = false
+  }
 
   const fetchContracts = async () => {
     isLoading.value = true
     isError.value = false
     try {
-      const response = await axios.get<Contract[]>(`${host}/api/contracts/all`, {
-        headers: { Authorization: `Bearer ${authStore.authData.jwt}` },
-      })
+      const response = await axios.get<Contract[]>(`${host}/api/contracts/all`)
       if (response.status === 200) {
         contracts.value = response.data
       } else {
@@ -34,46 +49,11 @@ export const useContractsStore = defineStore('contracts', () => {
     } catch (error) {
       if (error instanceof Error) isError.value = true
     }
+    console.log(contracts.value)
     isLoading.value = false
   }
 
-  const fetchContractsByTourId = async (tourId: string) => {
-    isLoading.value = true
-    isError.value = false
-    try {
-      const response = await axios.get<Contract[]>(`${host}/api/contracts/by-tour/${tourId}`, {
-        headers: { Authorization: `Bearer ${authStore.authData.jwt}` },
-      })
-      if (response.status === 200) {
-        contracts.value = response.data
-      } else {
-        isError.value = true
-      }
-    } catch (error) {
-      if (error instanceof Error) isError.value = true
-    }
-    isLoading.value = false
-  }
-
-  const fetchContractsByUserId = async (userId: string) => {
-    isLoading.value = true
-    isError.value = false
-    try {
-      const response = await axios.get<Contract[]>(`${host}/api/contracts/by-user/${userId}`, {
-        headers: { Authorization: `Bearer ${authStore.authData.jwt}` },
-      })
-      if (response.status === 200) {
-        contracts.value = response.data
-      } else {
-        isError.value = true
-      }
-    } catch (error) {
-      if (error instanceof Error) isError.value = true
-    }
-    isLoading.value = false
-  }
-
-  const createContract = async (contract: Contract) => {
+  const createContract = async (contract: { tourId: string; userId: string }) => {
     isLoading.value = true
     isError.value = false
     try {
@@ -81,7 +61,6 @@ export const useContractsStore = defineStore('contracts', () => {
         headers: { Authorization: `Bearer ${authStore.authData.jwt}` },
       })
       if (response.status === 200) {
-        contracts.value.push(contract)
       } else {
         isError.value = true
       }
@@ -89,6 +68,7 @@ export const useContractsStore = defineStore('contracts', () => {
       if (error instanceof Error) isError.value = true
     }
     isLoading.value = false
+    fetchContracts()
   }
 
   const deleteContract = async (id: string) => {
@@ -107,6 +87,7 @@ export const useContractsStore = defineStore('contracts', () => {
       if (error instanceof Error) isError.value = true
     }
     isLoading.value = false
+    fetchContracts()
   }
 
   return {
@@ -114,9 +95,9 @@ export const useContractsStore = defineStore('contracts', () => {
     isError,
     isLoading,
     fetchContracts,
-    fetchContractsByTourId,
-    fetchContractsByUserId,
     createContract,
     deleteContract,
+    users,
+    fetchUsers,
   }
 })
