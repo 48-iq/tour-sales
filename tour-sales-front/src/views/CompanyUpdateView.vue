@@ -26,7 +26,7 @@
       <div class="form-group">
         <label for="email">Электронная почта:</label>
         <input
-          type="email"
+          type="text"
           id="email"
           v-model="companyStore.company.email"
           placeholder="Введите почту компании"
@@ -107,10 +107,11 @@ h2 {
   margin-top: 5px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  background-color: var(--color-dark-green);
 }
 
 button {
-  background-color: #4caf50;
+  background-color: var(--color-green);
   color: white;
   border: none;
   padding: 10px 20px;
@@ -124,6 +125,6 @@ button:disabled {
 }
 
 button:hover:not(:disabled) {
-  background-color: #45a049;
+  background-color: var(--color-green);
 }
 </style>

@@ -1,5 +1,16 @@
 <template>
   <div class="tours-table">
+    <div class="search-bar"></div>
+    <form>
+      <input v-model="searchData.title" type="text" placeholder="Поиск по названию" />
+      <select v-model="searchData.company">
+        <option value="">Все компании</option>
+        <option v-for="company in companiesStore.companies" :key="company.id" :value="company.id">
+          {{ company.name }}
+        </option>
+      </select>
+      <button type="submit" @click="find">Найти</button>
+    </form>
     <h2>Список туров</h2>
 
     <!-- Сообщение об ошибке -->
@@ -8,7 +19,7 @@
     </div>
 
     <!-- Таблица туров -->
-    <table v-if="toursStore.isLoading && !toursStore.isError">
+    <table v-if="!toursStore.isLoading && !toursStore.isError">
       <thead>
         <tr>
           <th>Название</th>
@@ -27,10 +38,11 @@
           <td>{{ tour.price }} ₽</td>
           <td>{{ new Date(tour.startAt).toLocaleDateString() }}</td>
           <td>{{ new Date(tour.finishAt).toLocaleDateString() }}</td>
-          <td>
-            <button @click="viewDetails(tour.id)">Подробнее</button>
-            <button @click="deleteTour(tour.id)">Удалить</button>
-            <button @click="createContract(tour.id)">Составить контракт</button>
+          <td v-if="tour.company">{{ tour.company.name }}</td>
+          <td class="actions">
+            <button @click.prevent="viewDetails(tour.id)">Подробнее</button>
+            <button @click.prevent="deleteTour(tour.id)">Удалить</button>
+            <button @click.prevent="createContract(tour.id)">Составить контракт</button>
           </td>
         </tr>
       </tbody>
@@ -42,25 +54,36 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useToursStore } from '@/stores/toursStore'
 import { useRouter } from 'vue-router'
+import { useCompaniesStore } from '@/stores/companiesStore'
 
+const companiesStore = useCompaniesStore()
 const toursStore = useToursStore()
 const router = useRouter()
+const searchData = ref({
+  title: '',
+  company: '',
+})
+
+const find = (e: Event) => {
+  e.preventDefault()
+  toursStore.fetchToursByTitleAndCompanyId(searchData.value.title, searchData.value.company)
+}
 
 // Хранение данных о турах и их состоянии
 
 // Загружаем туры при монтировании компонента
 onMounted(() => {
-  toursStore.fetchTours()
+  toursStore.fetchToursByTitleAndCompanyId(searchData.value.title, searchData.value.company)
+  console.log(toursStore.tours)
+  console.log('mounted')
+  companiesStore.fetchCompanies()
 })
 
-// Получаем имя компании по её ID
-
-// Переводит пользователя на страницу с подробностями тура
 const viewDetails = (tourId: string) => {
-  router.push(`/tours/${tourId}`)
+  router.push(`/tour/${tourId}`)
 }
 
 // Обрабатывает удаление тура
@@ -77,11 +100,19 @@ const createContract = (tourId: string) => {
 
 <style scoped>
 .tours-table {
-  max-width: 1200px;
+  min-width: 1200px;
   margin: 20px auto;
   padding: 20px;
   border: 1px solid #ddd;
   border-radius: 8px;
+}
+
+select {
+  background-color: var(--color-dark-green);
+}
+
+input {
+  background-color: var(--color-dark-green);
 }
 
 h2 {
@@ -99,29 +130,37 @@ th,
 td {
   padding: 12px;
   text-align: left;
+  background-color: var(--color-green);
+
   border-bottom: 1px solid #ddd;
 }
 
 th {
-  background-color: #f4f4f4;
+  background-color: var(--color-dark-green);
 }
 
 button {
   margin-right: 10px;
   padding: 8px 12px;
-  background-color: #4caf50;
+  background-color: var(--color-dark-green);
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
 }
 
+.actions {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+
 button:hover {
-  background-color: #45a049;
+  background-color: var(--color-light-brown);
 }
 
 button:disabled {
-  background-color: #aaa;
+  background-color: var(--color-green);
   cursor: not-allowed;
 }
 

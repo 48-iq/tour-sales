@@ -44,7 +44,7 @@ RETURNS TABLE(id text, title text, description text, price double precision, sta
 $$
 BEGIN
     RETURN QUERY
-    SELECT t.id, t.title, t.description, t.price, t.start_at, t.finish_at, t.available_count
+    SELECT t.id, t.title, t.description, t.price, t.start_at, t.finish_at, t.available_count, t.company_id
     FROM tours t
     JOIN tours_cities tc ON tc.tour_id = t.id
     JOIN cities c ON c.name = tc.city_name
@@ -58,7 +58,7 @@ RETURNS TABLE(id text, title text, description text, price double precision, sta
 $$
 BEGIN
     RETURN QUERY
-    SELECT t.id, t.title, t.description, t.price, t.start_at, t.finish_at, t.available_count
+    SELECT t.id, t.title, t.description, t.price, t.start_at, t.finish_at, t.available_count, t.company_id
     FROM tours as t
     WHERE t.title like '%' || p_title || '%';
 END;
@@ -77,27 +77,36 @@ END;
 $$ LANGUAGE plpgsql;
 
 
-CREATE OR REPLACE FUNCTION update_tour_by_id(p_id text, p_title text, p_description text, p_price double precision, p_start_at date, p_finish_at date, p_available_count integer)
+CREATE OR REPLACE FUNCTION update_tour_by_id(p_id text,
+        p_title text,
+        p_description text,
+        p_price double precision,
+        p_start_at date,
+        p_finish_at date,
+        p_available_count integer)
 RETURNS void AS
 $$
 BEGIN
     UPDATE tours
-    SET title = p_title, description = p_description, price = p_price, start_at = p_start_at, finish_at = p_finish_at, available_count = p_available_count
+    SET title = p_title,
+        description = p_description,
+        price = p_price,
+        start_at = p_start_at,
+        finish_at = p_finish_at,
+        available_count = p_available_count
     WHERE id = p_id;
 END;
 $$ LANGUAGE plpgsql;
 
 
-CREATE OR REPLACE FUNCTION get_tours_by_title_and_city(p_title text, p_city_name text)
+CREATE OR REPLACE FUNCTION get_tours_by_title_and_company_id(p_title text, p_company_id text)
 RETURNS TABLE(id text, title text, description text, price double precision, start_at date, finish_at date, available_count integer, company_id text) AS
 $$
 BEGIN
     RETURN QUERY
-    SELECT t.id, t.title, t.description, t.price, t.start_at, t.finish_at, t.available_count
-    FROM tours t
-    JOIN tours_cities tc ON tc.tour_id = t.id
-    JOIN cities c ON c.name = tc.city_name
-    WHERE t.title LIKE '%' || p_title || '%' AND c.name = p_city_name;
+    SELECT t.id, t.title, t.description, t.price, t.start_at, t.finish_at, t.available_count, t.company_id
+    FROM tours as t
+    where t.title like '%' || p_title || '%' and t.company_id = p_company_id;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -107,7 +116,7 @@ CREATE OR REPLACE FUNCTION delete_tour_by_id(p_id text)
 RETURNS void AS
 $$
 BEGIN
-    DELETE FROM tours WHERE id = p_id;
+    DELETE FROM tours as t WHERE t.id = p_id;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -118,8 +127,8 @@ RETURNS TABLE(id text, title text, description text, price double precision, sta
 $$
 BEGIN
     RETURN QUERY
-    SELECT t.id, t.title, t.description, t.price, t.start_at, t.finish_at, t.available_count
+    SELECT t.id, t.title, t.description, t.price, t.start_at, t.finish_at, t.available_count, t.company_id
     FROM tours as t
-    WHERE company_id = p_company_id;
+    WHERE t.company_id = p_company_id;
 END;
 $$ LANGUAGE plpgsql;

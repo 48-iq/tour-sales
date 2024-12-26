@@ -30,7 +30,9 @@
             <button v-if="authStore.isAdmin()" @click="toUpdateCompany(company.id)">
               Редактировать
             </button>
-            <button v-if="authStore.isAdmin()">Удалить</button>
+            <button @click="companiesStore.deleteCompany(company.id)" v-if="authStore.isAdmin()">
+              Удалить
+            </button>
           </td>
         </tr>
       </tbody>

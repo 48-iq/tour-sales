@@ -32,6 +32,16 @@ public class CityService {
                 .toList();
     }
 
+    public List<CityDto> getCitiesByTour(String tourId) {
+        return cityRepository.getCitiesByTour(tourId)
+                .stream()
+                .map(city -> CityDto.builder()
+                        .name(city.getName())
+                        .countryName(city.getCountryName())
+                        .build())
+                .toList();
+    }
+
     public void deleteCity(String name) {
         cityRepository.deleteCity(name);
     }

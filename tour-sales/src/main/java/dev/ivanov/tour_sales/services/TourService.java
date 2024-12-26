@@ -1,17 +1,16 @@
 package dev.ivanov.tour_sales.services;
 
+import dev.ivanov.tour_sales.DateFormats;
 import dev.ivanov.tour_sales.dto.city.CityDto;
 import dev.ivanov.tour_sales.dto.tour.TourCreateDto;
 import dev.ivanov.tour_sales.dto.tour.TourDto;
 import dev.ivanov.tour_sales.dto.tour.TourUpdateDto;
 import dev.ivanov.tour_sales.exceptions.EntityNotFoundException;
-import dev.ivanov.tour_sales.repositories.CityRepository;
 import dev.ivanov.tour_sales.repositories.TourRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -25,32 +24,41 @@ public class TourService {
     private IdService idService;
 
     @Autowired
-    private CityRepository cityRepository;
+    private CityService cityService;
+
+    @Autowired
+    private DiscountService discountService;
+
+    @Autowired
+    private CompanyService companyService;
 
     public TourDto getTourById(String id) {
         TourDto tourDto = tourRepository.getTourById(id)
-                .map(TourDto::from)
+                .map(t -> TourDto.from(t, cityService.getCitiesByTour(t.getId()),
+                        companyService.getCompanyById(t.getCompanyId()),
+                        discountService.getDiscountsByTour(t.getId())))
                 .orElseThrow(() -> new EntityNotFoundException("Tour with id " + id + " not found"));
-        tourDto.setCities(cityRepository.getCitiesByTour(id).stream()
-                .map(CityDto::from).toList());
-
         return tourDto;
     }
 
     public List<TourDto> getAllTours() {
-        return tourRepository.getAllTours().stream().map(TourDto::from).toList();
+        return tourRepository.getAllTours().stream()
+                .map(t -> TourDto.from(t, cityService.getCitiesByTour(t.getId()),
+                        companyService.getCompanyById(t.getCompanyId()),
+                        discountService.getDiscountsByTour(t.getId())))
+                .toList();
     }
 
-    public void addCityToTour(String tourId, String cityId) {
+    public void addCityToTour(String cityId, String tourId) {
         tourRepository.addCityToTour(cityId, tourId);
     }
 
-    public void removeCityFromTour(String tourId, String cityId) {
+    public void removeCityFromTour(String cityId, String tourId) {
         tourRepository.removeCityFromTour(cityId, tourId);
     }
 
     public void createTour(TourCreateDto tourCreateDto) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DateFormats.DATE_FORMAT);
 
         String id = idService.generate();
 
@@ -70,8 +78,8 @@ public class TourService {
                 tourUpdateDto.getTitle(),
                 tourUpdateDto.getDescription(),
                 tourUpdateDto.getPrice(),
-                LocalDate.parse(tourUpdateDto.getStartAt(), DateTimeFormatter.ofPattern("yyyy-MM-dd")),
-                LocalDate.parse(tourUpdateDto.getFinishAt(), DateTimeFormatter.ofPattern("yyyy-MM-dd")),
+                LocalDate.parse(tourUpdateDto.getStartAt(), DateTimeFormatter.ofPattern(DateFormats.DATE_FORMAT)),
+                LocalDate.parse(tourUpdateDto.getFinishAt(), DateTimeFormatter.ofPattern(DateFormats.DATE_FORMAT)),
                 tourUpdateDto.getAvailableCount());
     }
 
@@ -82,41 +90,31 @@ public class TourService {
     public List<TourDto> getToursByCompanyId(String companyId) {
         return tourRepository.getToursByCompanyId(companyId)
                 .stream()
-                .map(TourDto::from)
-                .peek(tour -> tour.setCities(cityRepository
-                        .getCitiesByTour(tour.getId()).stream().map(CityDto::from).toList()))
+                .map(t -> TourDto.from(t, cityService.getCitiesByTour(t.getId()),
+                        companyService.getCompanyById(t.getCompanyId()),
+                        discountService.getDiscountsByTour(t.getId())))
                 .toList();
     }
 
-    public List<TourDto> getToursByTitleAndCity(String city, String title) {
-        if (city == null || city.isEmpty() || city.equals("all"))
-        {
-
-            return tourRepository.getToursByTitle(title)
-                    .stream()
-                    .map(TourDto::from)
-                    .peek(tour -> tour.setCities(cityRepository
-                            .getCitiesByTour(tour.getId()).stream().map(CityDto::from).toList()))
-                    .toList();
-        }
-
-        if (title == null || title.isEmpty()) {
-            return tourRepository.getToursByCity(city)
-                    .stream()
-                    .map(TourDto::from)
-                    .peek(tour -> tour.setCities(cityRepository
-                            .getCitiesByTour(tour.getId()).stream().map(CityDto::from).toList()))
-                    .toList();
-        }
-
-
-        return tourRepository.getToursByTitleAndCity(title, city)
+    public List<TourDto> getToursByTitle(String title) {
+        return tourRepository.getToursByTitle(title)
                 .stream()
-                .map(TourDto::from)
-                .peek(tour -> tour.setCities(cityRepository
-                        .getCitiesByTour(tour.getId()).stream().map(CityDto::from).toList()))
+                .map(t -> TourDto.from(t, cityService.getCitiesByTour(t.getId()),
+                        companyService.getCompanyById(t.getCompanyId()),
+                        discountService.getDiscountsByTour(t.getId())))
                 .toList();
     }
+
+    public List<TourDto> getToursByTitleAndCompanyId(String title, String companyId) {
+        return tourRepository.getToursByTitleAndCompanyId(title, companyId)
+                .stream()
+                .map(t -> TourDto.from(t, cityService.getCitiesByTour(t.getId()),
+                        companyService.getCompanyById(t.getCompanyId()),
+                        discountService.getDiscountsByTour(t.getId())))
+                .toList();
+    }
+
+
 
 
 

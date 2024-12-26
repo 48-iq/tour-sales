@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import type { Tour } from '@/stores/toursStore'
-import { useAuthStore } from './authStore'
 import axios from 'axios'
 import { host } from './host'
 
@@ -14,23 +13,102 @@ export const useTourStore = defineStore('tour', () => {
     startAt: '',
     finishAt: '',
     createdAt: '',
-    companyId: '',
+    availableCount: 0,
+    company: { id: '', name: '', description: '', email: '' },
     cities: [],
+    discounts: [],
   })
   const isError = ref<boolean>(false)
   const isLoading = ref<boolean>(false)
 
-  const authStore = useAuthStore()
+  const addCity = async (id: string, cityName: string) => {
+    isError.value = false
+    isLoading.value = true
+    try {
+      const response = await axios.post(`${host}/api/tours/add-city/${id}/${cityName}`, null, {})
+      if (response.status === 200) {
+        tour.value = response.data
+      } else {
+        isError.value = true
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        isError.value = true
+      }
+    }
+    fetchTour(id)
+    isLoading.value = false
+  }
+
+  const removeCity = async (id: string, cityName: string) => {
+    isError.value = false
+    isLoading.value = true
+    try {
+      const response = await axios.delete(`${host}/api/tours/remove-city/${id}/${cityName}`, {})
+      if (response.status === 200) {
+        tour.value = response.data
+      } else {
+        isError.value = true
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        isError.value = true
+      }
+    }
+    fetchTour(id)
+    isLoading.value = false
+  }
+
+  const createDiscount = async (id: string, categoryName: string, discount: number) => {
+    isError.value = false
+    isLoading.value = true
+    try {
+      const response = await axios.post(`${host}/api/discounts/create/`, {
+        tourId: id,
+        categoryName,
+        discount,
+      })
+      if (response.status === 200) {
+        tour.value = response.data
+      } else {
+        isError.value = true
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        isError.value = true
+      }
+    }
+    fetchTour(id)
+    isLoading.value = false
+  }
+
+  const removeDiscount = async (id: string, categoryName: string) => {
+    isError.value = false
+    isLoading.value = true
+    try {
+      const response = await axios.delete(`${host}/api/discounts/delete/${categoryName}/${id}`)
+      if (response.status === 200) {
+        tour.value = response.data
+      } else {
+        isError.value = true
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        isError.value = true
+      }
+    }
+    fetchTour(id)
+    isLoading.value = false
+  }
 
   const fetchTour = async (id: string) => {
     isLoading.value = true
     isError.value = false
     try {
-      const response = await axios.get<Tour>(`${host}/api/tours/${id}`, {
-        headers: { Authorization: `Bearer ${authStore.authData.jwt}` },
-      })
+      const response = await axios.get<Tour>(`${host}/api/tours/by-id/${id}`)
       if (response.status === 200) {
         tour.value = response.data
+        console.log(tour.value)
       } else {
         isError.value = true
       }
@@ -39,17 +117,23 @@ export const useTourStore = defineStore('tour', () => {
         isError.value = true
       }
     }
+    isLoading.value = false
   }
 
-  const updateTour = async (data: Tour) => {
+  const updateTour = async (data: {
+    id: string
+    title: string
+    description: string
+    price: number
+    startAt: string
+    finishAt: string
+    availableCount: number
+  }) => {
     isError.value = false
     isLoading.value = true
     try {
-      const response = await axios.put<Tour>(`${host}/api/tours/update/${data.id}`, data, {
-        headers: { Authorization: `Bearer ${authStore.authData.jwt}` },
-      })
+      const response = await axios.put<Tour>(`${host}/api/tours/update/${data.id}`, data, {})
       if (response.status === 200) {
-        tour.value = response.data
       } else {
         isError.value = true
       }
@@ -58,7 +142,19 @@ export const useTourStore = defineStore('tour', () => {
         isError.value = true
       }
     }
+    isLoading.value = false
+    fetchTour(data.id)
   }
 
-  return { tour, isError, isLoading, fetchTour, updateTour }
+  return {
+    tour,
+    isError,
+    isLoading,
+    fetchTour,
+    updateTour,
+    addCity,
+    removeCity,
+    createDiscount,
+    removeDiscount,
+  }
 })

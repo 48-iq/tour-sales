@@ -13,8 +13,19 @@ export type Tour = {
   startAt: string
   finishAt: string
   createdAt: string
-  companyId: string
+  availableCount: number
+  company: {
+    id: string
+    name: string
+    description: string
+    email: string
+  }
   cities: City[]
+  discounts: {
+    tourId: string
+    categoryName: string
+    discount: number
+  }[]
 }
 
 export const useToursStore = defineStore('tours', () => {
@@ -40,6 +51,8 @@ export const useToursStore = defineStore('tours', () => {
         headers: { Authorization: `Bearer ${authStore.authData.jwt}` },
       })
       if (response.status === 200) {
+        console.log(response.data)
+        tours.value.push(response.data)
       } else {
         isError.value = true
       }
@@ -58,6 +71,7 @@ export const useToursStore = defineStore('tours', () => {
       })
       if (response.status === 200) {
         tours.value = tours.value.filter((tour) => tour.id !== id)
+        console.log(tours.value)
       } else {
         isError.value = true
       }
@@ -74,6 +88,12 @@ export const useToursStore = defineStore('tours', () => {
       const response = await axios.get<Tour[]>(`${host}/api/tours/all`)
       if (response.status === 200) {
         tours.value = response.data
+        console.log(tours.value)
+        console.log({
+          action: 'in fetch tours',
+          response: response.data,
+          tours: tours.value,
+        })
       } else {
         isError.value = true
       }
@@ -83,32 +103,15 @@ export const useToursStore = defineStore('tours', () => {
     isLoading.value = false
   }
 
-  const fetchToursByCompanyId = async (companyId: string) => {
+  const fetchToursByTitleAndCompanyId = async (title: string, companyId: string) => {
     isLoading.value = true
     isError.value = false
     try {
-      const response = await axios.get<Tour[]>(`${host}/api/tours/by-company/${companyId}`, {
-        headers: { Authorization: `Bearer ${authStore.authData.jwt}` },
-      })
-      if (response.status === 200) {
-        tours.value = response.data
-      } else {
-        isError.value = true
-      }
-    } catch (error) {
-      if (error instanceof Error) isError.value = true
-    }
-    isLoading.value = false
-  }
-
-  const fetchToursByCityAndTitle = async (city: string, title: string) => {
-    isLoading.value = true
-    isError.value = false
-    try {
-      const response = await axios.get<Tour[]>(`${host}/api/tours/find`, {
-        headers: { Authorization: `Bearer ${authStore.authData.jwt}` },
-        params: { city, query: title },
-      })
+      console.log({ title, companyId })
+      const response = await axios.get<Tour[]>(
+        `${host}/api/tours/find?title=${title}&companyId=${companyId}`,
+      )
+      console.log(response.data)
       if (response.status === 200) {
         tours.value = response.data
       } else {
@@ -127,7 +130,6 @@ export const useToursStore = defineStore('tours', () => {
     createTour,
     deleteTour,
     fetchTours,
-    fetchToursByCompanyId,
-    fetchToursByCityAndTitle,
+    fetchToursByTitleAndCompanyId,
   }
 })

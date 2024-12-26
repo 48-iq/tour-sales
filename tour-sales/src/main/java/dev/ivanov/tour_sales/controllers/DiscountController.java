@@ -30,5 +30,9 @@ public class DiscountController {
         return ResponseEntity.ok(discountService.getDiscountsByTour(tourId));
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<?> getAllDiscounts() {
+        return ResponseEntity.ok(discountService.getAllDiscounts());
+    }
 
 }

@@ -1,6 +1,7 @@
 package dev.ivanov.tour_sales.repositories;
 
 import dev.ivanov.tour_sales.entities.Discount;
+import dev.ivanov.tour_sales.entities.DiscountView;
 import dev.ivanov.tour_sales.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -23,6 +24,9 @@ public interface DiscountRepository extends JpaRepository<Discount, String> {
     double getPriceWithDiscount(String tourId, String userId);
 
     @Query(nativeQuery = true, value = "select * from get_discounts_by_tour(:tourId)")
-    List<Discount> getDiscountsByTour(String tourId);
+    List<DiscountView> getDiscountsByTour(String tourId);
+
+    @Query(nativeQuery = true, value = "select * from get_all_discounts()")
+    List<DiscountView> getAllDiscounts();
 
 }

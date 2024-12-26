@@ -5,7 +5,6 @@ import { RouterLink } from 'vue-router'
 <template>
   <nav class="nav">
     <RouterLink to="/create-tour"><div class="link top-link">Добавить тур</div></RouterLink>
-    <RouterLink to="/tours"><div class="link">Добавить скидку</div></RouterLink>
     <RouterLink to="/categories"><div class="link">Категории</div></RouterLink>
     <RouterLink to="/create-company"><div class="link">Добавить компанию</div></RouterLink>
     <RouterLink to="/countries"><div class="link">Страны</div></RouterLink>

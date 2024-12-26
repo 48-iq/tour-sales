@@ -19,7 +19,7 @@
       <div class="form-group">
         <label for="email">Электронная почта</label>
         <input
-          type="email"
+          type="text"
           id="email"
           v-model="companyData.email"
           placeholder="Введите электронную почту"
@@ -124,13 +124,17 @@ h2 {
 .form-group textarea {
   padding: 10px;
   border: 1px solid #ccc;
+  background-color: var(--color-dark-green);
   border-radius: 5px;
   font-size: 14px;
+}
+input::placeholder {
+  color: var(--color-light-brown);
 }
 
 form button {
   padding: 10px;
-  background-color: #007bff;
+  background-color: var(--color-light-brown);
   color: white;
   border: none;
   border-radius: 5px;
@@ -139,11 +143,11 @@ form button {
 }
 
 form button:disabled {
-  background-color: #cccccc;
+  background-color: var(--color-green);
 }
 
 .error-message {
-  color: red;
+  color: var(--color-light-brown);
   text-align: center;
   margin-top: 20px;
 }

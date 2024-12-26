@@ -1,5 +1,6 @@
 package dev.ivanov.tour_sales.services;
 
+import dev.ivanov.tour_sales.DateFormats;
 import dev.ivanov.tour_sales.dto.category.UserCategoryDto;
 import dev.ivanov.tour_sales.dto.user.UserDto;
 import dev.ivanov.tour_sales.dto.user.UserUpdateDto;
@@ -25,10 +26,10 @@ public class UserService {
     private UserCategoryRepository userCategoryRepository;
 
     public void updateUser(String id, UserUpdateDto userUpdateDto) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DateFormats.DATE_FORMAT);
         LocalDate parsedBirthDate = null;
-
-        parsedBirthDate = LocalDate.parse(userUpdateDto.getBirthDate(), formatter);
+        if (userUpdateDto.getBirthDate() != null)
+            parsedBirthDate = LocalDate.parse(userUpdateDto.getBirthDate(), formatter);
         userRepository.updateUser(id,
                 userUpdateDto.getName(),
                 userUpdateDto.getSurname(),

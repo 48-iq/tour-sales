@@ -36,12 +36,25 @@ $$ LANGUAGE plpgsql;
 
 
 CREATE OR REPLACE FUNCTION get_discounts_by_tour(p_tour_id text)
-RETURNS TABLE(category_name text, discount double precision) AS
+RETURNS TABLE(tour_id text, category_name text, discount double precision, tour_title text) AS
 $$
 BEGIN
     RETURN QUERY
-    SELECT d.category_name, d.discount
+    SELECT d.tour_id, d.category_name, d.discount, t.title as tour_title
     FROM discounts as d
-    WHERE tour_id = p_tour_id;
+       join tours as t on t.id = d.tour_id
+    WHERE d.tour_id = p_tour_id;
+END;
+$$ LANGUAGE plpgsql;
+
+
+CREATE OR REPLACE FUNCTION get_all_discounts()
+RETURNS TABLE(tour_id text, category_name text, discount double precision, tour_title text) AS
+$$
+BEGIN
+    RETURN QUERY
+    SELECT d.tour_id, d.category_name, d.discount, t.title as tour_title
+    FROM discounts as d
+        join tours as t on t.id = d.tour_id;
 END;
 $$ LANGUAGE plpgsql;

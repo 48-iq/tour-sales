@@ -8,7 +8,7 @@
     </div>
 
     <!-- Форма редактирования -->
-    <form @submit.prevent="handleSubmit" class="tour-form">
+    <form class="tour-form" @submit.prevent="onSubmit">
       <div class="form-group">
         <label for="title">Название тура</label>
         <input v-model="tourStore.tour.title" id="title" type="text" required />
@@ -34,33 +34,80 @@
         <input v-model="tourStore.tour.finishAt" id="finishAt" type="date" required />
       </div>
 
+      <div class="form-group">
+        <label for="availableCount">Доступные места</label>
+        <input v-model="tourStore.tour.availableCount" id="availableCount" type="number" required />
+      </div>
+
       <button type="submit" :disabled="tourStore.isLoading">Сохранить</button>
     </form>
 
-    <h3>Города тура</h3>
+    <br />
+    <br />
 
-    <!-- Список городов -->
-    <div v-if="tourStore.tour.cities.length > 0">
-      <ul>
-        <li v-for="(city, index) in tourStore.tour.cities" :key="city.name">
-          {{ city.name }}
-          <button @click="removeCity(index)">Удалить</button>
-        </li>
-      </ul>
-    </div>
-    <div v-else>
-      <p>Города не добавлены</p>
-    </div>
+    <h3>Города тура</h3>
 
     <!-- Выпадающий список для добавления города -->
     <div>
       <label for="add-city">Добавить город</label>
-      <select v-model="selectedCityId" id="add-city">
+      <select v-model="addCityName" id="add-city">
         <option v-for="city in citiesStore.cities" :key="city.name" :value="city.name">
           {{ city.name }}
         </option>
       </select>
-      <button @click="addCity" :disabled="!selectedCityId || tourStore.isLoading">Добавить</button>
+      <button @click.prevent="addCity">Добавить</button>
+    </div>
+
+    <!-- Список городов -->
+    <div>
+      <ul>
+        <li v-for="city in tourStore.tour.cities" :key="city.name">
+          {{ city.name }}
+          <button>Удалить</button>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Форма для создания скидки -->
+    <h3>Добавить скидку</h3>
+    <div class="discount-form">
+      <div class="form-group">
+        <label for="discount-category">Категория</label>
+        <select v-model="selectedDiscountCategory" id="discount-category" required>
+          <option
+            v-for="category in userCategoriesStore.userCategories"
+            :key="category.title"
+            :value="category.title"
+          >
+            {{ category.title }}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="discount-value">Скидка (%)</label>
+        <input
+          v-model="discountValue"
+          id="discount-value"
+          type="number"
+          min="0"
+          max="100"
+          required
+        />
+      </div>
+
+      <button>Добавить скидку</button>
+    </div>
+
+    <!-- Список скидок -->
+    <h3>Скидки</h3>
+    <div>
+      <ul>
+        <li v-for="(discount, index) in tourStore.tour.discounts" :key="index">
+          {{ discount.categoryName }} - {{ discount.discount }}%
+          <button>Удалить</button>
+        </li>
+      </ul>
     </div>
 
     <div v-if="tourStore.isLoading" class="loading-message">Сохранение...</div>
@@ -71,46 +118,34 @@
 import { ref, onMounted } from 'vue'
 import { useTourStore } from '@/stores/tourStore'
 import { useCitiesStore } from '@/stores/citiesStore'
+import { useUserCategoriesStore } from '@/stores/userCategoriesStore'
 
-const props = defineProps<{ id: string }>()
+const params = defineProps<{ id: string }>()
 
 // Состояния компонента
 const tourStore = useTourStore()
 const citiesStore = useCitiesStore()
+const userCategoriesStore = useUserCategoriesStore()
 
-// Стейт для выбора города
-const selectedCityId = ref<string | null>(null)
-
-// Загружаем тур по переданному id
 onMounted(() => {
-  tourStore.fetchTour(props.id)
-  citiesStore.fetchCities() // Загружаем все города
+  tourStore.fetchTour(params.id)
+  citiesStore.fetchCities()
+  userCategoriesStore.fetchUserCategories()
 })
 
-// Функция для обновления информации о туре
-const handleSubmit = async () => {
-  if (
-    tourStore.tour.title &&
-    tourStore.tour.description &&
-    tourStore.tour.price &&
-    tourStore.tour.startAt &&
-    tourStore.tour.finishAt
-  ) {
-    tourStore.updateTour(tourStore.tour)
-  }
+const onSubmit = async () => {
+  await tourStore.updateTour(tourStore.tour)
 }
 
-// Функция для удаления города из списка
-const removeCity = (index: number) => {
-  tourStore.tour.cities.splice(index, 1)
+const addCityName = ref<string>('')
+
+const addCity = async () => {
+  tourStore.addCity(params.id, addCityName.value)
+  addCityName.value = ''
 }
 
-// Функция для добавления города
-const addCity = () => {
-  if (selectedCityId.value) {
-    citiesStore.cities.find((city) => city.name === selectedCityId.value)
-  }
-}
+const selectedDiscountCategory = ref<string | null>(null)
+const discountValue = ref<number | null>(null)
 </script>
 
 <style scoped>
@@ -128,12 +163,13 @@ h3 {
 }
 
 .error-message {
-  color: red;
+  color: var(--color-light-brown);
   text-align: center;
   margin-bottom: 20px;
 }
 
-.tour-form {
+.tour-form,
+.discount-form {
   display: flex;
   flex-direction: column;
 }
@@ -149,6 +185,7 @@ label {
 input,
 textarea,
 select {
+  background-color: var(--color-dark-green);
   padding: 8px;
   margin-top: 5px;
   width: 100%;
@@ -158,7 +195,7 @@ select {
 button {
   margin-top: 10px;
   padding: 10px;
-  background-color: #4caf50;
+  background-color: var(--color-green);
   color: white;
   border: none;
   border-radius: 4px;
@@ -166,11 +203,11 @@ button {
 }
 
 button:hover {
-  background-color: #45a049;
+  background-color: var(--color-green);
 }
 
 button:disabled {
-  background-color: #aaa;
+  background-color: var(--color-green);
   cursor: not-allowed;
 }
 
@@ -189,5 +226,10 @@ ul li {
   display: flex;
   justify-content: space-between;
   margin-bottom: 5px;
+}
+
+ul li button {
+  background-color: var(--color-light-brown);
+  color: white;
 }
 </style>

@@ -14,6 +14,8 @@ import CreateCompanyView from '@/views/CreateCompanyView.vue'
 import CompanyUpdateView from '@/views/CompanyUpdateView.vue'
 import TourCreateView from '@/views/TourCreateView.vue'
 import ToursView from '@/views/ToursView.vue'
+import TourView from '@/views/TourView.vue'
+import TourUpdateView from '@/views/TourUpdateView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -92,6 +94,18 @@ const router = createRouter({
           path: '/tours',
           name: 'tours',
           component: ToursView,
+        },
+        {
+          path: '/tour/:id',
+          props: true,
+          name: 'tour',
+          component: TourView,
+        },
+        {
+          path: '/tour-update/:id',
+          props: true,
+          name: 'tour-update',
+          component: TourUpdateView,
         },
       ],
     },

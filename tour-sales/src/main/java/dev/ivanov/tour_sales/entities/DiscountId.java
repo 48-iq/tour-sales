@@ -1,21 +1,15 @@
 package dev.ivanov.tour_sales.entities;
 
-import jakarta.persistence.*;
+import jakarta.persistence.IdClass;
 import lombok.*;
 
-@Entity
-@Table(name = "discounts")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@IdClass(DiscountId.class)
-public class Discount {
-    @Id
-    private String categoryName;
-    @Id
-    private String tourId;
-    private Double discount;
-}
+public class DiscountId {
 
+    private String categoryName;
+    private String tourId;
+}

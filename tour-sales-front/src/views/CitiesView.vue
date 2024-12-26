@@ -1,7 +1,7 @@
 <template>
   <div class="cities">
     <!-- Форма для добавления города -->
-    <div class="add-city-form">
+    <div v-if="authStore.isAdmin()" class="add-city-form">
       <input v-model="newCity.name" placeholder="Введите название города" />
       <select v-model="newCity.countryName" placeholder="Выберите страну">
         <option value="" disabled>Выберите страну</option>
@@ -41,10 +41,13 @@
 import { ref, onMounted } from 'vue'
 import { useCitiesStore } from '@/stores/citiesStore'
 import { useCountriesStore } from '@/stores/countriesStore'
+import { useAuthStore } from '@/stores/authStore'
 
 // Подключаем Pinia store для работы с городами и странами
 const citiesStore = useCitiesStore()
 const countriesStore = useCountriesStore()
+
+const authStore = useAuthStore()
 
 // Локальные данные для нового города
 const newCity = ref({

@@ -1,7 +1,7 @@
 <template>
   <div class="countries">
     <!-- Форма для добавления страны -->
-    <div class="add-country-form">
+    <div v-if="authStore.isAdmin()" class="add-country-form">
       <input v-model="newCountry.name" placeholder="Введите название страны" />
       <button @click="addCountry" :disabled="store.isLoading">Добавить страну</button>
     </div>
@@ -29,9 +29,12 @@
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
 import { useCountriesStore } from '@/stores/countriesStore'
+import { useAuthStore } from '@/stores/authStore'
 
 // Подключаем Pinia store для работы с данными стран
 const store = useCountriesStore()
+
+const authStore = useAuthStore()
 
 // Локальное состояние для новой страны
 const newCountry = ref({

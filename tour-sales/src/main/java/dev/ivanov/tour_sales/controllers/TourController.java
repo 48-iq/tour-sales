@@ -44,9 +44,17 @@ public class TourController {
     }
 
     @GetMapping("/find")
-    public ResponseEntity<?> findToursByNameOrDescription(@RequestParam String title,
-                                                          @RequestParam String city) {
-        return ResponseEntity.ok(tourService.getToursByTitleAndCity(title, city));
+    public ResponseEntity<?> findTours(@RequestParam String title,
+                                       @RequestParam String companyId) {
+        if (title.isEmpty() && companyId.isEmpty()) {
+            return ResponseEntity.ok(tourService.getAllTours());
+        } else if (!title.isEmpty() && !companyId.isEmpty()) {
+            return ResponseEntity.ok(tourService.getToursByTitleAndCompanyId(title, companyId));
+        } else if (!title.isEmpty()) {
+            return ResponseEntity.ok(tourService.getToursByTitle(title));
+        } else {
+            return ResponseEntity.ok(tourService.getToursByCompanyId(companyId));
+        }
     }
 
     @GetMapping("/by-company/{companyId}")

@@ -15,4 +15,14 @@ public class CompanyDto {
     private String name;
     private String description;
     private String email;
+
+
+    public static CompanyDto from(dev.ivanov.tour_sales.entities.Company company) {
+        return CompanyDto.builder()
+                .id(company.getId())
+                .name(company.getName())
+                .description(company.getDescription())
+                .email(company.getEmail())
+                .build();
+    }
 }

@@ -1,7 +1,9 @@
 package dev.ivanov.tour_sales.services;
 
 import dev.ivanov.tour_sales.dto.discount.DiscountCreateDto;
+import dev.ivanov.tour_sales.dto.discount.DiscountDto;
 import dev.ivanov.tour_sales.entities.Discount;
+import dev.ivanov.tour_sales.entities.DiscountView;
 import dev.ivanov.tour_sales.repositories.DiscountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,7 +30,14 @@ public class DiscountService {
         return discountRepository.getPriceWithDiscount(tourId, userId);
     }
 
-    public List<Discount> getDiscountsByTour(String tourId) {
+    public List<DiscountView> getAllDiscounts() {
+        return discountRepository.getAllDiscounts();
+
+    }
+
+    public List<DiscountView> getDiscountsByTour(String tourId) {
+
         return discountRepository.getDiscountsByTour(tourId);
+
     }
 }
