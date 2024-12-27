@@ -24,7 +24,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: BestPassword
     ports:
-      - :5432
+      60881:5432
     networks:
       backend:
     healthcheck:
