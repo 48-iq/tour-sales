@@ -38,8 +38,11 @@
       <ul>
         <li v-for="contract in contractsStore.contracts" :key="contract.id">
           <div>
-            <strong>Тур:</strong> {{ contract.tourId }} | <strong>Пользователь:</strong>
-            {{ contract.userId }} | <strong>Цена:</strong> {{ contract.price }}
+            <strong>Тур:</strong
+            ><RouterLink :to="`/tour/${contract.tourId}`"> {{ contract.tourId }} </RouterLink> |
+            <strong>Пользователь:</strong>
+            <RouterLink :to="`/userS/${contract.userId}`"> {{ contract.userId }}</RouterLink> |
+            <strong>Цена:</strong> {{ contract.price }}
           </div>
           <button
             @click="contractsStore.deleteContract(contract.id)"
@@ -60,6 +63,7 @@
 import { ref, onMounted, watch } from 'vue'
 import { useContractsStore } from '@/stores/contractsStore'
 import { useToursStore } from '@/stores/toursStore'
+import { RouterLink } from 'vue-router'
 
 const contractsStore = useContractsStore()
 const toursStore = useToursStore()

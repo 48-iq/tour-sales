@@ -23,6 +23,11 @@
       </div>
 
       <div class="form-group">
+        <label>Количество мест</label>
+        <p>{{ tourStore.tour.availableCount }}</p>
+      </div>
+
+      <div class="form-group">
         <label>Дата начала</label>
         <p>{{ tourStore.tour.startAt }}</p>
       </div>

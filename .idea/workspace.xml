@@ -7,6 +7,9 @@
     <list default="true" id="d0f74cf7-3114-4a86-9e2b-332712ae5e86" name="Changes" comment="a">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales-front/src/components/tour/TourProfile.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales-front/src/views/ContractsView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales-front/src/views/ContractsView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tour-sales-front/src/views/TourView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/tour-sales-front/src/views/TourView.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
